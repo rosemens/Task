@@ -87,6 +87,6 @@ public class CSVTool {
 		bean.setBirthday("2000-11-11");
 		list.add(bean);
 		File file = new File("D:/mypbook.csv");
-		exportCsvFile(list, file);
+		exportCsvFile(list, file);//µ¼³ö
 	}
 }
