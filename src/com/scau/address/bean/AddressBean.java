@@ -2,7 +2,7 @@ package com.scau.address.bean;
 
 
 /**
- * 联系人的模型类
+ * 联系人的模型类：没有照片
  * 
  * @author Administrator
  *
