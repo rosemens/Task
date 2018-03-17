@@ -13,6 +13,7 @@ public class AddressBean {
 	private String mobilephone;// 手机号码
 	private String email;// 电子邮箱
 	private String birthday;// 生日
+	private String index;//个人主页
 	private String workplace;// 工作单位
 	private String address;// 家庭住址
 	private String postcode;// 邮编
@@ -59,6 +60,14 @@ public class AddressBean {
 		this.birthday = birthday;
 	}
 
+	public String getIndex() {
+		return index;
+	}
+
+	public void setIndex(String index) {
+		this.index = index;
+	}
+
 	public String getWorkplace() {
 		return workplace;
 	}
@@ -99,4 +108,11 @@ public class AddressBean {
 		this.remarks = remarks;
 	}
 
+	@Override
+	public String toString() {
+		return "AddressBean [name=" + name + ", telephone=" + telephone + ", mobilephone=" + mobilephone + ", email="
+				+ email + ", birthday=" + birthday + ", index=" + index + ", workplace=" + workplace + ", address="
+				+ address + ", postcode=" + postcode + ", group=" + group + ", remarks=" + remarks + "]";
+	}
+	
 }

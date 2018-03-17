@@ -18,11 +18,12 @@ public class AddressBeanTool {
 			bean.setMobilephone(item[2]);
 			bean.setEmail(item[3]);
 			bean.setBirthday(item[4]);
-			bean.setWorkplace(item[5]);
-			bean.setAddress(item[6]);
-			bean.setPostcode(item[7]);
-			bean.setGroup(item[8]);
-			bean.setRemarks(item[9]);
+			bean.setIndex(item[5]);
+			bean.setWorkplace(item[6]);
+			bean.setAddress(item[7]);
+			bean.setPostcode(item[8]);
+			bean.setGroup(item[9]);
+			bean.setRemarks(item[10]);
 			return bean;
 		}
 		return null;

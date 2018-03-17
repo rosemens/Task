@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
@@ -32,6 +33,7 @@ public class CSVTool {
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				String[] item = line.split(",");// 以逗号分隔每一行数据
+				System.out.println(Arrays.toString(item));
 				AddressBean bean = AddressBeanTool.toBean(item);// 封装所得数据到AddressBean对象
 				if (bean != null)
 					list.add(bean);
@@ -49,19 +51,20 @@ public class CSVTool {
 	public static void exportCsvFile(List<AddressBean> list, File file) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-			writer.write("姓名,家庭电话,移动电话,邮件地址,生日,工作地址,家庭地址,邮编,联系组,备注");// 标题行，包含所有的信息
+			writer.write("姓名,家庭电话,移动电话,邮件地址,生日,个人主页,工作地址,家庭地址,邮编,联系组,备注");// 标题行，包含所有的信息
 			writer.newLine();// 创建新行
 			for (AddressBean bean : list) {
-				writer.write(bean.getName()+",");
-				writer.write(bean.getTelephone()+",");
-				writer.write(bean.getMobilephone()+",");
-				writer.write(bean.getEmail()+",");
-				writer.write(bean.getBirthday()+",");
-				writer.write(bean.getWorkplace()+",");
-				writer.write(bean.getAddress()+",");
-				writer.write(bean.getPostcode()+",");
-				writer.write(bean.getGroup()+",");
-				writer.write(bean.getRemarks());
+				writer.write(bean.getName() == null?",":bean.getName()+",");
+				writer.write(bean.getTelephone() == null?",":bean.getTelephone()+",");
+				writer.write(bean.getMobilephone() == null?",":bean.getMobilephone()+",");
+				writer.write(bean.getEmail() == null?",":bean.getEmail()+",");
+				writer.write(bean.getBirthday() == null?",":bean.getBirthday()+",");
+				writer.write(bean.getIndex() == null?",":bean.getIndex()+",");
+				writer.write(bean.getWorkplace() == null?",":bean.getWorkplace()+",");
+				writer.write(bean.getAddress() == null?",":bean.getAddress()+",");
+				writer.write(bean.getPostcode() == null?",":bean.getPostcode()+",");
+				writer.write(bean.getGroup() == null?",":bean.getGroup()+",");
+				writer.write(bean.getRemarks() == null?",":bean.getRemarks());
 				writer.newLine();
 			}
 			writer.close();
@@ -86,7 +89,10 @@ public class CSVTool {
 		bean.setRemarks("好人啊");
 		bean.setBirthday("2000-11-11");
 		list.add(bean);
-		File file = new File("D:/mypbook.csv");
-		exportCsvFile(list, file);//导出
+		
+		//File file = new File("D:/mypbook.csv");
+		//exportCsvFile(list, file);//导出
+		/*list = importCsvFile(file);
+		System.out.println(list);*/
 	}
 }
