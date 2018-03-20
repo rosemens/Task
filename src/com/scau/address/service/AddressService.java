@@ -67,13 +67,7 @@ public class AddressService {
 	
 	@Test
 	public void test(){
-		/*List<AddressBean> list = new ArrayList<>();
-		  AddressBean bean = new AddressBean(); bean.setName("子言");
-		 bean.setTelephone("0663-3133456"); bean.setMobilephone("15819610734");
-		 bean.setEmail("chen@163.com"); bean.setAddress(";;五山路;揭阳;广东;515555;中国");
-		 bean.setWorkplace("广州中国"); bean.setGroup("亲人"); bean.setPostcode("a");
-		 bean.setRemarks("e"); bean.setBirthday("2000-11-11"); list.add(bean);
-		 System.out.println(search("ziyan", list));*/
+		
 		
 		List<AddressBean> list = new ArrayList<>();
 		for(int i=0;i<10;i++) {
