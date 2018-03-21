@@ -33,7 +33,6 @@ public class CSVTool {
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				String[] item = line.split(",");// 以逗号分隔每一行数据
-				System.out.println(Arrays.toString(item));
 				AddressBean bean = AddressBeanTool.toBean(item);// 封装所得数据到AddressBean对象
 				if (bean != null)
 					list.add(bean);
@@ -54,17 +53,17 @@ public class CSVTool {
 			writer.write("姓名,家庭电话,移动电话,邮件地址,生日,个人主页,工作地址,家庭地址,邮编,联系组,备注");// 标题行，包含所有的信息
 			writer.newLine();// 创建新行
 			for (AddressBean bean : list) {
-				writer.write(bean.getName() == null?",":bean.getName()+",");
-				writer.write(bean.getTelephone() == null?",":bean.getTelephone()+",");
-				writer.write(bean.getMobilephone() == null?",":bean.getMobilephone()+",");
-				writer.write(bean.getEmail() == null?",":bean.getEmail()+",");
-				writer.write(bean.getBirthday() == null?",":bean.getBirthday()+",");
-				writer.write(bean.getIndex() == null?",":bean.getIndex()+",");
-				writer.write(bean.getWorkplace() == null?",":bean.getWorkplace()+",");
-				writer.write(bean.getAddress() == null?",":bean.getAddress()+",");
-				writer.write(bean.getPostcode() == null?",":bean.getPostcode()+",");
-				writer.write(bean.getGroup() == null?",":bean.getGroup()+",");
-				writer.write(bean.getRemarks() == null?",":bean.getRemarks());
+				writer.write(bean.getName() == ","?",":(bean.getName()+","));
+				writer.write(bean.getTelephone() == ","?",":(bean.getTelephone()+","));
+				writer.write(bean.getMobilephone() == ","?",":(bean.getMobilephone()+","));
+				writer.write(bean.getEmail() == ","?",":(bean.getEmail()+","));
+				writer.write(bean.getBirthday() == ","?",":(bean.getBirthday()+","));
+				writer.write(bean.getIndex() == ","?",":(bean.getIndex()+","));
+				writer.write(bean.getWorkplace() == ","?",":(bean.getWorkplace()+","));
+				writer.write(bean.getAddress() == ","?",":(bean.getAddress()+","));
+				writer.write(bean.getPostcode() == ","?",":(bean.getPostcode()+","));
+				writer.write(bean.getGroup() == ","?",":(bean.getGroup()+","));
+				writer.write(bean.getGroup() == ","?" ":bean.getRemarks());
 				writer.newLine();
 			}
 			writer.close();
@@ -76,7 +75,7 @@ public class CSVTool {
 	@Test
 	public void test() {
 		/*测试导出一个csv文件*/
-		List<AddressBean> list = new ArrayList<>();
+	/*	List<AddressBean> list = new ArrayList<>();
 		AddressBean bean = new AddressBean();
 		bean.setName("子言");
 		bean.setTelephone("0663-3133456");
@@ -88,11 +87,17 @@ public class CSVTool {
 		bean.setPostcode("515555");
 		bean.setRemarks("好人啊");
 		bean.setBirthday("2000-11-11");
-		list.add(bean);
+		list.add(bean);*/
 		
-		//File file = new File("D:/mypbook.csv");
+		File file = new File("D:/mytest1.csv");
 		//exportCsvFile(list, file);//导出
-		/*list = importCsvFile(file);
-		System.out.println(list);*/
+		List<AddressBean> list = importCsvFile(file);
+		System.out.println(list);
+		System.out.println(list.get(3).getRemarks()+"jb");
+		
+		
+		/*String[] items = "子彬,0663-3133456,15819610734,chen@163.com,2000-11-11,,广州中国,;;五山路;揭阳;广东;515555;中国,a,, ".split(",");
+		System.out.println(items.length);
+		System.out.println(Arrays.toString(items));*/
 	}
 }

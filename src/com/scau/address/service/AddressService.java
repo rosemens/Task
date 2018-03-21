@@ -9,11 +9,14 @@ import java.util.regex.Pattern;
 import org.junit.Test;
 
 import com.scau.address.bean.AddressBean;
+import com.scau.address.bean.AddressBeanTool;
 import com.scau.address.convertpy.tools.ConvertTool;
+import com.scau.address.file.tool.FIleTool;
 
 /**
  * 用户功能类：
  * 1.搜索联系人
+ * 2.新建联系人
  * @author Administrator
  *
  */
@@ -65,6 +68,16 @@ public class AddressService {
 		return list;
 	}
 	
+	/*新建联系人
+	 *a.参数：list指的是当前联系人列表
+	 *       items指的是新建联系人的信息数组    
+	 */
+	public static void add(List<AddressBean> list,String[] items) {
+		AddressBean ab = AddressBeanTool.toBean(items);//新建的联系人
+		list.add(ab);//添加到列表中
+		FIleTool.Rewrite(list);//将添加新联系人后的列表写回到文件中
+	}
+	
 	@Test
 	public void test(){
 		
@@ -91,6 +104,7 @@ public class AddressService {
 		for(AddressBean b:search("135",list)) {
 			System.out.println(b);
 		}
-		
 	}
+	
+	
 }

@@ -1,7 +1,13 @@
 package com.scau.address.panes;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.List;
+
 import com.scau.address.bean.AddressBean;
 import com.scau.address.bean.AddressBeanTool;
+import com.scau.address.csv.tool.CSVTool;
+import com.scau.address.file.tool.FIleTool;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -50,10 +56,25 @@ public class TestPane extends Application{
 				else items[i] = tf[i].getText();
 			}
 			AddressBean bean = AddressBeanTool.toBean(items);
-		    System.out.println(bean);
+			System.out.println(bean);
+			System.out.println(bean.getRemarks());
+		    List<AddressBean> list = CSVTool.importCsvFile(new File("D:/mytest1.csv"));
+		    list.add(bean);
+		    FIleTool.Rewrite(list);
 		});
-		
+	}
+	
+	//²âÊÔÐÂ½¨
+	/*public void start(Stage stage) throws Exception {
+     paint();
 		
 	}
+
+	private void paint() {
+		GridPane pane = new GridPane();
+		
+		
+	}*/
+		
 
 }
