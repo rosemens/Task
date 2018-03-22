@@ -92,7 +92,7 @@ public class VCFTool {
 	}
 
 	/** 读取vcf格式文件，并将数据封装到一个List<AddressBean>中 */
-	public List<AddressBean> importVCFFile(File file) {
+	public  static List<AddressBean> importVCFFile(File file) {
 		List<AddressBean> list = new ArrayList<AddressBean>();
 
 		try {
@@ -118,7 +118,7 @@ public class VCFTool {
 				Pattern pn = Pattern.compile("FN:((.+)$*)");// 分组，
 				Matcher mn = pn.matcher(str);
 				while (mn.find()) {
-					String name = "";
+					String name = ",";
 					name = mn.group(0).substring("FN:".length());// 截取name
 					bean.setName(name);
 				}
@@ -221,7 +221,7 @@ public class VCFTool {
 	}
 
 	/* 将vcf格式的文件转换成一个字符串 */
-	private String nextLine(BufferedReader reader) throws Exception {
+	private static String nextLine(BufferedReader reader) throws Exception {
 		String line;
 		String nextLine;
 		do {
@@ -245,24 +245,11 @@ public class VCFTool {
 		line = line.trim();
 		return line;
 	}
-
-	/* 测试方法 */
+	
 	@Test
 	public void test() {
-
-		/* 测试导出一个vcf文件 */
-		List<AddressBean> list = new ArrayList<>();
-		
-		  AddressBean bean = new AddressBean(); bean.setName("子言");
-		 bean.setTelephone("0663-3133456"); bean.setMobilephone("15819610734");
-		 bean.setEmail("chen@163.com"); bean.setAddress(";;五山路;揭阳;广东;515555;中国");
-		 bean.setWorkplace("广州中国"); bean.setGroup("亲人"); bean.setPostcode("a");
-		 bean.setRemarks("e"); bean.setBirthday("2000-11-11"); list.add(bean);
-		 
-		/*File file = new File("D:/mypbook.vcf");
-		list = importVCFFile(file);
-		System.out.println(list);*/
-		File file = new File("D:/myTest.vcf");
-		exportVcfFile(list, file);
+	  File file = new File("D:/mypbook.vcf");
+	  System.out.println(importVCFFile(file));
 	}
+
 }

@@ -12,7 +12,6 @@ import com.scau.address.file.tool.FIleTool;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -48,12 +47,13 @@ public class TestPane extends Application{
 		stage.setScene(scene);
 		stage.show();
 		
-		bt.setOnAction(e->{
+		bt.setOnAction(e->{   //一定要这样，如果文本框内容没有填，则用,代替
 			String[] items = new String[11];
 			for(int i = 0;i<11;i++) {
-				if(tf[i].getText()==null||tf[i].getText().trim().isEmpty())
+				/*if(tf[i].getText()==null||tf[i].getText().trim().isEmpty())
 					items[i] = ",";
-				else items[i] = tf[i].getText();
+				else items[i] = tf[i].getText();*/
+				items[i] = tf[i].getText();
 			}
 			AddressBean bean = AddressBeanTool.toBean(items);
 			System.out.println(bean);
@@ -64,17 +64,4 @@ public class TestPane extends Application{
 		});
 	}
 	
-	//测试新建
-	/*public void start(Stage stage) throws Exception {
-     paint();
-		
-	}
-
-	private void paint() {
-		GridPane pane = new GridPane();
-		
-		
-	}*/
-		
-
 }
