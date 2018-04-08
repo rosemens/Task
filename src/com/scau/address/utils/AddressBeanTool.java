@@ -1,6 +1,6 @@
-package com.scau.address.bean;
+package com.scau.address.utils;
 
-
+import com.scau.address.bean.AddressBean;
 
 /**
  * ¹¤¾ßÀà:

@@ -1,14 +1,10 @@
 package com.scau.address.panes;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.List;
-
 import com.scau.address.bean.AddressBean;
-import com.scau.address.bean.AddressBeanTool;
-import com.scau.address.csv.tool.CSVTool;
-import com.scau.address.file.tool.FIleTool;
-
+import com.scau.address.utils.AddressBeanTool;
+import com.scau.address.utils.CSVTool;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,13 +17,7 @@ import javafx.stage.Stage;
  * @author Administrator
  *
  */
-public class TestPane extends Application{
-
-	public static void main(String[] args) {
-		Application.launch(args);
-    
-	}
-
+public class AddPane extends Application{
 	@Override
 	public void start(Stage stage) throws Exception {
 		GridPane pane = new GridPane();
@@ -60,7 +50,7 @@ public class TestPane extends Application{
 			System.out.println(bean.getRemarks());
 		    List<AddressBean> list = CSVTool.importCsvFile(new File("D:/mytest1.csv"));
 		    list.add(bean);
-		    FIleTool.Rewrite(list);
+		   
 		});
 	}
 	

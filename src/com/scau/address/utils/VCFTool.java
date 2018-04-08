@@ -1,4 +1,4 @@
-package com.scau.address.vcf.tool;
+package com.scau.address.utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

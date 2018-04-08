@@ -1,4 +1,4 @@
-package com.scau.address.groups.tool;
+package com.scau.address.utils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -9,7 +9,6 @@ import java.util.Map;
 import org.junit.Test;
 
 import com.scau.address.bean.AddressBean;
-import com.scau.address.csv.tool.CSVTool;
 
 /**
  * 得到导入文件的分组情况

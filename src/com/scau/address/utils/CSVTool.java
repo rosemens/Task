@@ -1,4 +1,4 @@
-package com.scau.address.csv.tool;
+package com.scau.address.utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,15 +8,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
-import org.junit.Test;
-
 import com.scau.address.bean.AddressBean;
-import com.scau.address.bean.AddressBeanTool;
-import com.scau.address.file.tool.FIleTool;
-import com.scau.address.vcf.tool.VCFTool;
+
 
 
 /**

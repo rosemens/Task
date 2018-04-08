@@ -1,4 +1,4 @@
-package com.scau.address.convertpy.tools;
+package com.scau.address.utils;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;

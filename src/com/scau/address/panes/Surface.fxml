@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="536.0" prefWidth="1061.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scau.address.panes.MyController">
+   <children>
+      <SplitPane fx:id="s1" dividerPositions="0.187" layoutX="29.0" layoutY="91.0" prefHeight="445.0" prefWidth="632.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="133.0" minHeight="0.0" minWidth="0.0" prefHeight="534.0" prefWidth="130.0" style="-fx-padding: 0;" SplitPane.resizableWithParent="false">
+               <children>
+                  <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="534.0" prefWidth="130.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane maxHeight="118.0" minHeight="0.0" minWidth="0.0" prefHeight="115.0" prefWidth="128.0" SplitPane.resizableWithParent="false" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="418.0" prefWidth="128.0">
+                           <children>
+                              <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="402.0" prefWidth="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="295.0" prefWidth="126.0">
+                                       <children>
+                                          <SplitPane dividerPositions="0.5" layoutY="14.0" orientation="VERTICAL" prefHeight="292.0" prefWidth="126.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <items>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                   <children>
+                                                      <TreeView fx:id="t1" layoutX="-38.0" layoutY="-34.0" prefHeight="145.0" prefWidth="124.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                   <children>
+                                                      <TreeView fx:id="t2" layoutX="-65.0" layoutY="-46.0" prefHeight="145.0" prefWidth="124.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                            </items>
+                                          </SplitPane>
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane maxHeight="120.0" minHeight="0.0" minWidth="0.0" prefHeight="124.0" prefWidth="126.0" SplitPane.resizableWithParent="false" />
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <SplitPane fx:id="s2" dividerPositions="0.22095238095238096" orientation="VERTICAL" prefHeight="443.0" prefWidth="471.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane maxHeight="130.0" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="130.0" prefWidth="787.0" SplitPane.resizableWithParent="false">
+                           <children>
+                              <Button fx:id="b1" layoutX="8.0" layoutY="78.0" mnemonicParsing="false" onAction="#add" prefHeight="26.0" prefWidth="76.0" text="新建联系人" />
+                              <Button layoutX="332.0" layoutY="78.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="55.0" text="删除" />
+                              <TextField layoutX="520.0" layoutY="77.0" prefHeight="26.0" prefWidth="138.0" promptText="搜索联系人" />
+                              <MenuButton fx:id="m1" layoutX="247.0" layoutY="78.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" text="复制到组" />
+                              <MenuButton fx:id="m2" layoutX="387.0" layoutY="78.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" text="移动到组" />
+                              <MenuButton layoutX="851.0" layoutY="77.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="导出">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#exportCSV" text="csv格式" />
+                                  <MenuItem mnemonicParsing="false" onAction="#exportVCF" text="vcard格式" />
+                                </items>
+                              </MenuButton>
+                              <MenuButton layoutX="781.0" layoutY="77.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="导入">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" onAction="#importCSV" text="csv格式" />
+                                  <MenuItem mnemonicParsing="false" onAction="#importVCF" text="vcard格式" />
+                                </items>
+                              </MenuButton>
+                              <Button layoutX="139.0" layoutY="78.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="55.0" text="编辑组" />
+                              <Button layoutX="194.0" layoutY="78.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="55.0" text="删除组" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <SplitPane dividerPositions="0.7017114914425427" layoutX="14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="414.0" prefWidth="787.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="341.0" prefWidth="785.0">
+                                       <children>
+                                          <TableView fx:id="table" layoutY="32.0" prefHeight="289.0" prefWidth="925.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn fx:id="col0" prefWidth="147.0" sortable="false" />
+                                              <TableColumn fx:id="col1" prefWidth="226.0" sortType="DESCENDING" text="姓名" />
+                                                <TableColumn fx:id="col2" minWidth="0.0" prefWidth="250.6328125" text="邮箱" />
+                                                <TableColumn fx:id="col3" prefWidth="280.0" text="手机号码" />
+                                                <TableColumn fx:id="col4" prefWidth="93.0" text="所在组" />
+                                            </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                       </children></AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="74.0" prefWidth="277.0" SplitPane.resizableWithParent="false" />
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
