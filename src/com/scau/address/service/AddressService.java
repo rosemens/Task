@@ -15,9 +15,13 @@ import com.scau.address.dao.AddressDao;
 public class AddressService {
 	private AddressDao dao = new AddressDao();
 	
+	public List<AddressBean> getAll(){
+		return dao.getAll();
+	}
+	
 	/*条件搜索*/
-	public List<AddressBean> search(String text){
-		return dao.search(text);
+	public List<AddressBean> search(String text,List<AddressBean> beans){
+		return dao.search(text,beans);
 	}
 	
 	/*添加联系人 */

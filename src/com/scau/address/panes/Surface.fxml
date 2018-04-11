@@ -52,8 +52,8 @@
                       <AnchorPane maxHeight="130.0" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="130.0" prefWidth="787.0" SplitPane.resizableWithParent="false">
                            <children>
                               <Button fx:id="b1" layoutX="8.0" layoutY="78.0" mnemonicParsing="false" onAction="#add" prefHeight="26.0" prefWidth="76.0" text="新建联系人" />
-                              <Button layoutX="332.0" layoutY="78.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="55.0" text="删除" />
-                              <TextField layoutX="520.0" layoutY="77.0" prefHeight="26.0" prefWidth="138.0" promptText="搜索联系人" />
+                              <Button fx:id="b2" layoutX="332.0" layoutY="78.0" mnemonicParsing="false" onAction="#delete" prefHeight="26.0" prefWidth="55.0" text="删除" />
+                              <TextField fx:id="search" layoutX="520.0" layoutY="77.0" onAction="#searchBeans" prefHeight="26.0" prefWidth="138.0" promptText="搜索联系人" />
                               <MenuButton fx:id="m1" layoutX="247.0" layoutY="78.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" text="复制到组" />
                               <MenuButton fx:id="m2" layoutX="387.0" layoutY="78.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="85.0" text="移动到组" />
                               <MenuButton layoutX="851.0" layoutY="77.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="导出">

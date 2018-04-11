@@ -1,11 +1,15 @@
 package com.scau.address.dao;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import com.scau.address.bean.AddressBean;
+import com.scau.address.utils.CSVTool;
 import com.scau.address.utils.ConvertTool;
 
 /**
@@ -15,14 +19,15 @@ import com.scau.address.utils.ConvertTool;
  *
  */
 public class AddressDao {
+	private File file = new File("src/mydatas.csv");      //存储联系人的文件 
+	
 	/* 得到所有联系人 */
 	public List<AddressBean> getAll() {
-		return null;
+		return CSVTool.importCsvFile(file);
 	}
 
 	/* 根据搜索框内容来查询联系人 */
-	public List<AddressBean> search(String text) {
-		List<AddressBean> beans = getAll();
+	public List<AddressBean> search(String text,List<AddressBean> beans) {
 		List<AddressBean> list = new ArrayList<AddressBean>();// 查询结果集
 
 		if (text == null || text.trim().isEmpty()) {
@@ -68,8 +73,58 @@ public class AddressDao {
 	}
     
 	/*添加联系人*/
-	public void add(AddressBean ab) {
-		
+	public void add(AddressBean bean) {
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(file,true));
+				if(bean.getName().trim().isEmpty())
+					writer.write(",");
+				else writer.write(bean.getName()+",");
+				
+				if(bean.getTelephone().trim().isEmpty())
+					writer.write(",");
+				else writer.write(bean.getTelephone()+",");
+				
+				if(bean.getMobilephone().trim().isEmpty())
+					writer.write(",");
+				else writer.write(bean.getMobilephone()+",");
+				
+				if(bean.getEmail().trim().isEmpty())
+					writer.write(",");
+				else writer.write(bean.getEmail()+",");
+				
+				if(bean.getBirthday().trim().isEmpty())
+					writer.write(",");
+				else writer.write(bean.getBirthday()+",");
+				
+				if(bean.getIndex().trim().isEmpty())
+					writer.write(",");
+				else writer.write(bean.getIndex()+",");
+				
+				if(bean.getWorkplace().trim().isEmpty())
+					writer.write(",");
+				else writer.write(bean.getWorkplace()+",");
+				
+				if(bean.getAddress().trim().isEmpty())
+					writer.write(",");
+				else writer.write(bean.getAddress()+",");
+				
+				if(bean.getPostcode().trim().isEmpty())
+					writer.write(",");
+				else writer.write(bean.getPostcode()+",");
+				
+				if(bean.getGroup().trim().isEmpty())
+					writer.write(",");
+				else writer.write(bean.getGroup()+",");
+				
+				if(bean.getRemarks().trim().isEmpty())
+					writer.write(" ");
+				else writer.write(bean.getRemarks());
+				writer.newLine();
+			
+			writer.close();
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 	}
 	
 	/*删除联系人*/

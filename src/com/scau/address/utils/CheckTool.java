@@ -1,6 +1,8 @@
 package com.scau.address.utils;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.scau.address.bean.AddressBean;
 
@@ -18,5 +20,13 @@ public class CheckTool {
 				total.add(ab);
 		}
 		return total;
+	}
+	
+	/*校验字符串是否符合正则表达式*/
+	public static boolean isMatched(String regEx,String str) {
+		Pattern pattern = Pattern.compile(regEx);
+		Matcher matcher = pattern.matcher(str);
+		boolean rs = matcher.matches();
+		return rs;
 	}
 }

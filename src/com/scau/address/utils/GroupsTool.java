@@ -1,13 +1,9 @@
 package com.scau.address.utils;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.junit.Test;
-
 import com.scau.address.bean.AddressBean;
 
 /**
@@ -29,22 +25,25 @@ public class GroupsTool {
 					group.add(ab);
 					map.put("未分组", group);
 				}
-			}else if(map.containsKey(ab.getGroup())) {  //map中已有这个分组，则把这个联系人加到对应组的列表中
+			}/*else if(map.containsKey(ab.getGroup())) {  //map中已有这个分组，则把这个联系人加到对应组的列表中
 				map.get(ab.getGroup()).add(ab);
 			}else {
 				List<AddressBean> group = new ArrayList<>();
 				group.add(ab);
 				map.put(ab.getGroup(), group);
-			}	
+			}	*/
+			else {
+				String[] groups = ab.getGroup().split(" ");
+				if(groups != null)
+				for(String group:groups) {
+					if(!map.containsKey(group)) {
+						List<AddressBean> tol = new ArrayList<AddressBean>();
+						tol.add(ab);
+						map.put(group, tol);
+					}else map.get(group).add(ab);
+				}
+			}
 		}
 		return map;
-	}
-	
-	@Test
-	public void test() {
-		File file = new File("D:/myaddress.csv");
-		List<AddressBean> list = CSVTool.importCsvFile(file);
-		Map<String,List<AddressBean>> map = getGroups(list);
-		System.out.println(map);
 	}
 }
