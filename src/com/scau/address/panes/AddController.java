@@ -7,6 +7,8 @@ import com.scau.address.bean.AddressBean;
 import com.scau.address.service.AddressService;
 import com.scau.address.utils.AddressBeanTool;
 import com.scau.address.utils.CheckTool;
+
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -53,7 +55,9 @@ public class AddController {
 	private Button ok;
 	@FXML
 	private Button cancel;
+
 	private String regEx; // 正则表达式
+	private String agroup = ""; // 组
 	private MyController mcontroller; // 主控制类对象
 	private Stage stage; // 当前新建联系人的舞台
 	private AddressService service = new AddressService();
@@ -61,13 +65,17 @@ public class AddController {
 	public void init(MyController mcontroller, Stage stage) {
 		this.mcontroller = mcontroller;
 		this.stage = stage;
-	}
 
+		group.getItems().addAll(FXCollections.observableArrayList(mcontroller.list));
+	}
+    
+	/* 添加联系人  */
 	@FXML
 	public void add() {
 		try {
 			AddressBean bean = newAddressBean();
 			String group = bean.getGroup();
+			String flag = "";
 
 			if (group.trim().isEmpty()) { // 未设置组,并且未分组 这个 组是否存在
 				if (mcontroller.map.get("未分组") == null) {
@@ -76,16 +84,21 @@ public class AddController {
 					mcontroller.map.put("未分组", list);
 				} else
 					mcontroller.map.get("未分组").add(bean);
-			} else
-				for (String key : mcontroller.map.keySet()) {
-					if (group.equals(key))
+			} else {
+				for (String key : mcontroller.map.keySet()) { // 循环遍历看是否存在这个组
+					if (group.equals(key)) {
 						mcontroller.map.get(key).add(bean);
-					if (!group.trim().isEmpty()) {
-						List<AddressBean> list = new ArrayList<AddressBean>();
-						list.add(bean);
-						mcontroller.map.put(group, list);
+						flag = key;
+						break;
 					}
 				}
+				if (!group.equals(flag)) { // 不存在这个组则将这个组送进map中
+					List<AddressBean> list = new ArrayList<AddressBean>();
+					list.add(bean);
+					mcontroller.map.put(group, list);
+				}
+
+			}
 
 			mcontroller.total.add(bean);
 			mcontroller.fillTable(mcontroller.total); // 动态更新表格中的联系人列表
@@ -102,6 +115,12 @@ public class AddController {
 	@FXML
 	public void cancel() {
 		stage.close();
+	}
+
+	/* 选中组 */
+	@FXML
+	public void chooseGroup() {
+		agroup = group.getValue();
 	}
 
 	/* 封装数据到联系人对象,其中名字，手机，email不能为空 */
@@ -222,8 +241,6 @@ public class AddController {
 		items[7] = sbu.toString();
 
 		// 分组
-		String agroup = group.getValue();
-		agroup = "";
 		items[9] = agroup;
 
 		// 备注

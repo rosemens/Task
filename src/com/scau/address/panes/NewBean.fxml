@@ -39,7 +39,7 @@
             <TextField fx:id="mobilephone" promptText="11位" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="postcode" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <TextField fx:id="telephone" promptText="区号-电话" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <ComboBox fx:id="group" prefWidth="150.0" promptText="请选择" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <ComboBox fx:id="group" onAction="#chooseGroup" prefWidth="150.0" promptText="请选择" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="418.0" GridPane.columnSpan="4" GridPane.rowIndex="4">
                <children>
                   <Label prefHeight="15.0" prefWidth="59.0" text="家庭住址">

@@ -21,6 +21,7 @@ import com.scau.address.utils.ConvertTool;
 public class AddressDao {
 	private File file = new File("src/mydatas.csv");      //存储联系人的文件 
 	
+	
 	/* 得到所有联系人 */
 	public List<AddressBean> getAll() {
 		return CSVTool.importCsvFile(file);
@@ -128,13 +129,19 @@ public class AddressDao {
 	}
 	
 	/*删除联系人*/
-	public void delete(AddressBean ab) {
-		
+	public void delete(List<AddressBean> total) {
+		CSVTool.exportCsvFile(total,file);   //回写到文件中
 	}
+	
 	
 	/*修改联系人*/
 	public void modify() {
 		
+	}
+    
+	/* 保存联系人到文件中 */
+	public void save(List<AddressBean> total) {
+		CSVTool.exportCsvFile(total, file);
 	}
 
 }

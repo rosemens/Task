@@ -1,7 +1,6 @@
 package com.scau.address.service;
 
 import java.util.List;
-import org.junit.Test;
 import com.scau.address.bean.AddressBean;
 import com.scau.address.dao.AddressDao;
 
@@ -30,11 +29,12 @@ public class AddressService {
 	}
 	
 	/*删除联系人*/
-	public void delete(AddressBean ab) {
-		
+	public void delete(List<AddressBean> total) {
+		dao.delete(total);
 	}
-	
-	@Test
-	public void test(){
+    
+	/* 保存到文件中 */
+	public void save(List<AddressBean> total) {
+	    dao.save(total);
 	}
 }
