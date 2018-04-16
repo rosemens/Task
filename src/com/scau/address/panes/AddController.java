@@ -68,8 +68,8 @@ public class AddController {
 
 		group.getItems().addAll(FXCollections.observableArrayList(mcontroller.list));
 	}
-    
-	/* 添加联系人  */
+
+	/* 添加联系人 */
 	@FXML
 	public void add() {
 		try {
@@ -77,13 +77,8 @@ public class AddController {
 			String group = bean.getGroup();
 			String flag = "";
 
-			if (group.trim().isEmpty()) { // 未设置组,并且未分组 这个 组是否存在
-				if (mcontroller.map.get("未分组") == null) {
-					List<AddressBean> list = new ArrayList<AddressBean>();
-					list.add(bean);
-					mcontroller.map.put("未分组", list);
-				} else
-					mcontroller.map.get("未分组").add(bean);
+			if (group.trim().isEmpty()) { // 未设置组
+				mcontroller.map.get("未分组").add(bean);
 			} else {
 				for (String key : mcontroller.map.keySet()) { // 循环遍历看是否存在这个组
 					if (group.equals(key)) {

@@ -16,22 +16,23 @@ import com.scau.address.bean.AddressBean;
 public class CheckTool { 
 	
 	/*合并两个list,剔除完全相同的数据,邮箱与电话至少都不同*/
-	public static List<AddressBean> merge(List<AddressBean> total,List<AddressBean> beans,Map<String,List<AddressBean>> map){
+	public static List<AddressBean> merge(List<AddressBean> total,List<AddressBean> beans,Map<String,List<AddressBean>> map,List<String> group){
 		int flag = 0;      
 		
 		for(AddressBean ab:beans) { //剔除相同的联系人
 			flag = 0;
 			if(!total.contains(ab)) {
 				total.add(ab);
-				for(String key:map.keySet()) {
+				for(String key:map.keySet()) {      //已存在这个组
 					if(ab.getGroup().contains(key)) {
 						map.get(key).add(ab);
 						flag = 1;
 					}
 				}
-				if(flag == 0) {
+				if(flag == 0) {            //没有这个组则创建新组
 					List<AddressBean> list = new ArrayList<AddressBean>();
 					list.add(ab);
+					group.add(ab.getGroup());
 					map.put(ab.getGroup(), list);
 				}
 			}

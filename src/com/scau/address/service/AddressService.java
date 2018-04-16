@@ -37,4 +37,9 @@ public class AddressService {
 	public void save(List<AddressBean> total) {
 	    dao.save(total);
 	}
+    
+	/*É¾³ý×é*/
+	public void deleteGroup(List<AddressBean> total) {
+		dao.deleteGroup(total);
+	}
 }

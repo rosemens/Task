@@ -68,8 +68,8 @@
                                   <MenuItem mnemonicParsing="false" onAction="#importVCF" text="vcard格式" />
                                 </items>
                               </MenuButton>
-                              <Button layoutX="139.0" layoutY="78.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="55.0" text="编辑组" />
-                              <Button layoutX="194.0" layoutY="78.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="55.0" text="删除组" />
+                              <Button fx:id="b4" layoutX="139.0" layoutY="78.0" mnemonicParsing="false" onAction="#edit" prefHeight="26.0" prefWidth="55.0" text="编辑组" />
+                              <Button fx:id="b3" layoutX="194.0" layoutY="78.0" mnemonicParsing="false" onAction="#deleteGroup" prefHeight="26.0" prefWidth="55.0" text="删除组" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">

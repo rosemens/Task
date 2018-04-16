@@ -143,5 +143,10 @@ public class AddressDao {
 	public void save(List<AddressBean> total) {
 		CSVTool.exportCsvFile(total, file);
 	}
+    
+	/* É¾³ý×é  */
+	public void deleteGroup(List<AddressBean> total) {
+		this.save(total);
+	}
 
 }
