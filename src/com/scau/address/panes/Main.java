@@ -30,7 +30,7 @@ public class Main extends Application {
 			
 			primaryStage.setOnCloseRequest(e->{            //监听是否关闭窗口
 				//保存操作完成后所有的组名
-				GroupsTool.saveGroups(new File("src/mygroups.csv"), mc.map.keySet());
+				GroupsTool.saveGroups(new File("mygroups.csv"), mc.map.keySet());
 			});
 			
 		} catch(Exception e) {

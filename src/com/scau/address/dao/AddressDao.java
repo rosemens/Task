@@ -19,7 +19,7 @@ import com.scau.address.utils.ConvertTool;
  *
  */
 public class AddressDao {
-	private File file = new File("src/mydatas.csv");      //存储联系人的文件 
+	private File file = new File("mydatas.csv");      //存储联系人的文件 
 	
 	
 	/* 得到所有联系人 */
