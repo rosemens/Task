@@ -64,6 +64,8 @@ public class MyController {
 	private Button b3; // delete group
 	@FXML
 	private Button b4; // edit group
+	@FXML
+	private Button b5; //new group
 
 	@FXML
 	private TextField search;// search
@@ -126,6 +128,8 @@ public class MyController {
 
 		if (total != null && total.size() > 0)
 			fillTable(total);
+		
+		showBean();
 	}
 
 	/* 添加联系人 */
@@ -172,6 +176,32 @@ public class MyController {
 		initAllBeans(map);
 		initAllGroups(map);
 		service.delete(total);
+	}
+	
+	/*新建组*/
+	@FXML
+	public void addGroup() {
+		try {
+			URL location = getClass().getResource("AddGroup.fxml");
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setLocation(location);
+			fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
+			Parent pane = fxmlLoader.load();
+			AddGroupController ac = fxmlLoader.getController(); // 得到新建联系人的fxml的控制器对象
+			Scene scene = new Scene(pane, 383, 233);
+			Stage stage = new Stage();
+			ac.init(this, stage); // 初始化新建面板
+			stage.setScene(scene);
+			stage.setTitle("新建组");
+			stage.setIconified(false); // 禁止最小化
+			stage.initModality(Modality.WINDOW_MODAL);
+			stage.initOwner(primaryStage);
+			stage.show();
+            
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			throw new RuntimeException(e);
+		}
 	}
 
 	/* 删除组 */
@@ -352,7 +382,9 @@ public class MyController {
 				if (newValue != null) { // 如果有选中的话
 					 // 判断选中哪个组
 					flag = newValue.getValue();
-					fillTable(map.get(flag));
+					for(String key:map.keySet())
+						if(key.equals(flag))
+					    fillTable(map.get(flag));
 				}
 			}
 		});
@@ -446,5 +478,38 @@ public class MyController {
 			}
 
 	}
-
+	
+	/*显示联系人的所有信息*/
+	public void showBean() {
+		
+		try {
+			URL location = getClass().getResource("Show.fxml");
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setLocation(location);
+			fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
+			Parent pane = fxmlLoader.load();
+			
+			ShowController sc = fxmlLoader.getController();
+			Scene scene = new Scene(pane,603,474);
+			Stage stage = new Stage();
+			stage.setScene(scene);
+			stage.setTitle("详细信息");
+			stage.initModality(Modality.WINDOW_MODAL);
+			stage.initOwner(primaryStage);
+			
+			table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<AddressBean>() {
+				@Override
+				public void changed(ObservableValue<? extends AddressBean> observable, AddressBean oldValue,
+						AddressBean newValue) {
+					if(newValue != null) {
+						sc.init(newValue);
+						stage.show();
+					}
+				}
+			});
+		}catch(Exception e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
 }

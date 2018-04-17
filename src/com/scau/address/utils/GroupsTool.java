@@ -62,7 +62,7 @@ public class GroupsTool {
 	/* 得到所有的组名 */
 	public static List<String> getGroupsName() {
 		try {
-			File file = new File("src/mygroups.csv");
+			File file = new File("mygroups.csv");
 			List<String> groupsname = new ArrayList<String>();
 			BufferedReader reader = new BufferedReader(new FileReader(file));
             String line = null;

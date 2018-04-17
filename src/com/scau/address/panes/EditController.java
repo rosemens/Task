@@ -1,6 +1,8 @@
 package com.scau.address.panes;
 
 import com.scau.address.bean.AddressBean;
+import com.scau.address.service.AddressService;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -16,6 +18,7 @@ public class EditController {
    
    private MyController myController;
    private Stage stage;
+   private AddressService service = new AddressService();
    
    /* ≥ı ºªØ */
    public void init(MyController myController, Stage stage) {
@@ -60,6 +63,8 @@ public class EditController {
 	   myController.initAllBeans(myController.map);
 	   myController.initAllGroups(myController.map);
 	   myController.fillTable(myController.total);
+	   
+	   service.save(myController.total);
 	   stage.close();
    }
    
