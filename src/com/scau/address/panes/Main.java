@@ -3,6 +3,7 @@ package com.scau.address.panes;
 import java.io.File;
 import java.net.URL;
 
+import com.scau.address.service.AddressService;
 import com.scau.address.utils.GroupsTool;
 
 import javafx.application.Application;
@@ -13,7 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 
-public class Main extends Application {  
+public class Main extends Application { 
+	private AddressService service = new AddressService();
 	public void start(Stage primaryStage) {
 		try {
 			URL location = getClass().getResource("Surface.fxml");
@@ -31,6 +33,7 @@ public class Main extends Application {
 			primaryStage.setOnCloseRequest(e->{            //监听是否关闭窗口
 				//保存操作完成后所有的组名
 				GroupsTool.saveGroups(new File("mygroups.csv"), mc.map.keySet());
+				service.save(mc.total);
 			});
 			
 		} catch(Exception e) {

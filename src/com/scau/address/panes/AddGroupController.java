@@ -1,10 +1,7 @@
 package com.scau.address.panes;
 
 import java.util.ArrayList;
-
 import com.scau.address.bean.AddressBean;
-import com.scau.address.service.AddressService;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -17,10 +14,10 @@ public class AddGroupController {
    private Button b1;
    @FXML
    private Button b2;
-   
    private MyController myController;
    private Stage stage;
-   private AddressService service = new AddressService();
+   private String newGroup = "";
+   
    
    /* 初始化 */
    public void init(MyController myController, Stage stage) {
@@ -28,11 +25,12 @@ public class AddGroupController {
 	   this.stage = stage;
 	   
    }
+  
    
    /* 确定修改 */
    @FXML
    public void confirm() {
-	   String newGroup = t1.getText();
+	   newGroup = t1.getText();
 	   if(newGroup.trim().isEmpty()) {
 		   stage.close();
 		   return;
@@ -41,7 +39,6 @@ public class AddGroupController {
 	   myController.map.put(newGroup, new ArrayList<AddressBean>());
 	   myController.initAllGroups(myController.map);
 	   myController.updateGroupButton();
-	   service.save(myController.total);
 	   stage.close();
    }
    

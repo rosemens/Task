@@ -18,6 +18,7 @@ import com.scau.address.utils.VCFTool;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,7 +66,7 @@ public class MyController {
 	@FXML
 	private Button b4; // edit group
 	@FXML
-	private Button b5; //new group
+	private Button b5; // new group
 
 	@FXML
 	private TextField search;// search
@@ -95,10 +96,9 @@ public class MyController {
 	public List<AddressBean> total = new ArrayList<AddressBean>(); // 当前用户所有联系人
 	@FXML
 	public Map<String, List<AddressBean>> map = new HashMap<>(); // 所有组及其对应的联系人列表
-    
+
 	private int f = 0; // 0表示删除的联系人是从所有组中删除
-	public Object flag = 1; // 表示t1,t2中选中的TreeItem
-	
+	public String flag = ""; // 表示t1,t2中选中的TreeItem
 
 	/* 初始化操作 */
 	public void init(Stage primaryStage) {
@@ -120,6 +120,7 @@ public class MyController {
 		}
 
 		updateGroupButton(); // 更新‘移动到组’与‘复制到组’
+		move();
 
 		initAllBeans(map); // 动态设置联系人标签
 		initAllGroups(map); // 动态设置组的标签
@@ -128,7 +129,7 @@ public class MyController {
 
 		if (total != null && total.size() > 0)
 			fillTable(total);
-		
+
 		showBean();
 	}
 
@@ -151,7 +152,7 @@ public class MyController {
 			stage.initModality(Modality.WINDOW_MODAL);
 			stage.initOwner(primaryStage);
 			stage.show();
-            
+
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 			throw new RuntimeException(e);
@@ -175,10 +176,9 @@ public class MyController {
 		}
 		initAllBeans(map);
 		initAllGroups(map);
-		service.delete(total);
 	}
-	
-	/*新建组*/
+
+	/* 新建组 */
 	@FXML
 	public void addGroup() {
 		try {
@@ -197,7 +197,7 @@ public class MyController {
 			stage.initModality(Modality.WINDOW_MODAL);
 			stage.initOwner(primaryStage);
 			stage.show();
-            
+
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 			throw new RuntimeException(e);
@@ -234,7 +234,6 @@ public class MyController {
 		initAllGroups(map);
 		updateGroupButton();
 		fillTable(new ArrayList<AddressBean>());
-		service.deleteGroup(total);
 	}
 
 	@FXML
@@ -290,7 +289,6 @@ public class MyController {
 
 		initAllBeans(map);
 		initAllGroups(map);
-		service.save(total); // 保存联系人到本地文件中
 	}
 
 	/* 导入VCF */
@@ -310,7 +308,6 @@ public class MyController {
 
 		initAllBeans(map);
 		initAllBeans(map);
-		service.save(total); // 保存联系人到本地文件中
 	}
 
 	/* 导出CSV格式的文件 */
@@ -362,14 +359,19 @@ public class MyController {
 	/* 选中左侧栏目时，实时更新右边表格 */
 	public void updateTreeView() {
 		// 联系人方面
-		t1.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+		t1.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem<String>>() {
 			@Override
-			public void changed(ObservableValue<? extends Number> arg0, Number oldValue, Number newValue) {
-				flag = newValue;
-				if (newValue != null && newValue.equals(1))
-					fillTable(total);
-				else if (newValue != null && newValue.equals(2)) {
-					fillTable(map.get("未分组"));
+			public void changed(ObservableValue<? extends TreeItem<String>> observable, TreeItem<String> oldValue,
+					TreeItem<String> newValue) {
+				if (newValue != null) {
+					flag = newValue.getValue();
+					table.getSelectionModel().clearSelection(); // 取消选中表格的一行
+					t2.getSelectionModel().clearSelection();    //  取消选中左侧联系组
+					if (newValue.getValue().contains("所有联系人")) {
+						fillTable(total);
+					} else if (newValue.getValue().contains("未分组联系人")) {
+						fillTable(map.get("未分组"));
+					}
 				}
 			}
 		});
@@ -380,14 +382,21 @@ public class MyController {
 			public void changed(ObservableValue<? extends TreeItem<String>> observable, TreeItem<String> oldValue,
 					TreeItem<String> newValue) {
 				if (newValue != null) { // 如果有选中的话
-					 // 判断选中哪个组
+					table.getSelectionModel().clearSelection(); // 取消表格中某一行的选中
+					t1.getSelectionModel().clearSelection(); // 取消左侧联系人标签的选中
+					// 判断选中哪个组
 					flag = newValue.getValue();
-					for(String key:map.keySet())
-						if(key.equals(flag))
-					    fillTable(map.get(flag));
+					for (String key : map.keySet())
+						if (key.equals(flag))
+							fillTable(map.get(flag));
 				}
 			}
 		});
+	}
+	
+	/* 移动到组  */
+	public void move() {
+		m2.getItems().
 	}
 
 	/* 填充表格数据 */
@@ -398,21 +407,24 @@ public class MyController {
 		col3.setCellValueFactory(new PropertyValueFactory<AddressBean, String>("mobilephone"));
 		col4.setCellValueFactory(new PropertyValueFactory<AddressBean, String>("group"));
 		table.setItems(FXCollections.observableArrayList(total));
+		table.getSelectionModel().clearSelection();         //取消选中某行
 	}
 
 	/* 动态更新所有组的标签 */
 	public void initAllGroups(Map<String, List<AddressBean>> map) {
+		t2.getSelectionModel().clearSelection();
 		TreeItem<String> root2 = new TreeItem<String>("联系组");
 		root2.setExpanded(true);
 		for (String group : map.keySet())
 			if (!group.equals("未分组"))
 				root2.getChildren().add(new TreeItem<String>(group));
 		t2.setRoot(root2);
-		
+
 	}
 
 	/* 动态更新联系人列表的标签 */
 	public void initAllBeans(Map<String, List<AddressBean>> map) {
+		t1.getSelectionModel().clearSelection();
 		TreeItem<String> root1 = new TreeItem<String>("联系人");
 		root1.setExpanded(true);
 		root1.getChildren().add(new TreeItem<String>("所有联系人(" + total.size() + ")"));
@@ -478,19 +490,19 @@ public class MyController {
 			}
 
 	}
-	
-	/*显示联系人的所有信息*/
+
+	/* 显示联系人的所有信息 */
 	public void showBean() {
-		
+
 		try {
 			URL location = getClass().getResource("ShowBean.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(location);
 			fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
 			Parent pane = fxmlLoader.load();
-			
+
 			ShowBeanController sbc = fxmlLoader.getController();
-			Scene scene = new Scene(pane,603,474);
+			Scene scene = new Scene(pane, 603, 474);
 			Stage stage = new Stage();
 			stage.setScene(scene);
 			stage.setTitle("详细信息");
@@ -501,16 +513,15 @@ public class MyController {
 				@Override
 				public void changed(ObservableValue<? extends AddressBean> observable, AddressBean oldValue,
 						AddressBean newValue) {
-					if(newValue != null) {
-						sbc.init(newValue, stage, mc,primaryStage);
+					if (newValue != null) {
+						sbc.init(newValue, stage, mc, primaryStage);
 						stage.show();
 					}
 				}
 			});
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-		
 	}
 }

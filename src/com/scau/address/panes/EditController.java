@@ -64,7 +64,6 @@ public class EditController {
 	   myController.initAllGroups(myController.map);
 	   myController.fillTable(myController.total);
 	   
-	   service.save(myController.total);
 	   stage.close();
    }
    
