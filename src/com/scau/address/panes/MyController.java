@@ -7,18 +7,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.scau.address.bean.AddressBean;
 import com.scau.address.service.AddressService;
 import com.scau.address.utils.CSVTool;
 import com.scau.address.utils.CheckTool;
 import com.scau.address.utils.GroupsTool;
 import com.scau.address.utils.VCFTool;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -98,7 +95,7 @@ public class MyController {
 	public Map<String, List<AddressBean>> map = new HashMap<>(); // 所有组及其对应的联系人列表
 
 	private int f = 0; // 0表示删除的联系人是从所有组中删除
-	public String flag = ""; // 表示t1,t2中选中的TreeItem
+	public String flag = "所有联系人"; // 表示t1,t2中选中的TreeItem
 
 	/* 初始化操作 */
 	public void init(Stage primaryStage) {
@@ -120,7 +117,8 @@ public class MyController {
 		}
 
 		updateGroupButton(); // 更新‘移动到组’与‘复制到组’
-		move();
+		copy(); // 复制到组的动作事件
+		move(); // 移动到组的动作事件
 
 		initAllBeans(map); // 动态设置联系人标签
 		initAllGroups(map); // 动态设置组的标签
@@ -164,7 +162,7 @@ public class MyController {
 	public void delete() {
 		List<AddressBean> delist = new ArrayList<AddressBean>(); // 被选中删除的对象的列表
 
-		if (flag.equals(1) || flag.equals(2)) { // 选中的是否是‘全部联系人’中的联系人
+		if (flag.contains("所有联系人") || flag.contains("未分组联系人")) { // 选中的是否是‘全部联系人’中的联系人
 			removeBean(delist, total); // 或者是‘未分组’的联系人,是则从所有组删除
 		} else {
 			for (String key : map.keySet()) { // 判断选中的是哪个组的联系人
@@ -207,7 +205,7 @@ public class MyController {
 	/* 删除组 */
 	@FXML
 	public void deleteGroup() {
-		if (flag.equals(1) || flag.equals(2)) // 如果没选择组，什么也不做
+		if (flag.contains("所有联系人") || flag.contains("未分组联系人")) // 如果没选择组，什么也不做
 			return;
 		else {
 			for (AddressBean bean : map.get(flag)) { // 循环设置被选中组的联系人
@@ -239,7 +237,7 @@ public class MyController {
 	@FXML
 	/* 编辑组 */
 	public void edit() {
-		if (flag.equals(1) || flag.equals(2))
+		if (flag.contains("所有联系人") || flag.contains("未分组联系人"))
 			return;
 		try {
 			URL location = getClass().getResource("EditGroup.fxml");
@@ -366,7 +364,7 @@ public class MyController {
 				if (newValue != null) {
 					flag = newValue.getValue();
 					table.getSelectionModel().clearSelection(); // 取消选中表格的一行
-					t2.getSelectionModel().clearSelection();    //  取消选中左侧联系组
+					t2.getSelectionModel().clearSelection(); // 取消选中左侧联系组
 					if (newValue.getValue().contains("所有联系人")) {
 						fillTable(total);
 					} else if (newValue.getValue().contains("未分组联系人")) {
@@ -393,10 +391,81 @@ public class MyController {
 			}
 		});
 	}
-	
-	/* 移动到组  */
+
+	/* 复制到组 */
+	public void copy() {
+		for (MenuItem mi : m1.getItems()) {
+			mi.setOnAction(e -> {
+				String toGroup = mi.getText(); // 复制到哪个组
+				for (AddressBean bean : total) {
+					if (bean.getCb().isSelected()) { // 判断选中的是哪些联系人
+						if (bean.getGroup().contains(toGroup)) { // 联系人已经在组里面了
+							continue;
+						} else {
+							if (bean.getGroup().trim().isEmpty()) // 联系人不属于任何组
+								bean.setGroup(toGroup);
+							else {
+								StringBuilder sb = new StringBuilder();
+								sb.append(bean.getGroup() + " " + toGroup);
+								bean.setGroup(sb.toString());
+							}
+							map.get(toGroup).add(bean);
+						}
+					}
+					bean.getCb().setSelected(false);
+				}
+				initAllBeans(map);
+				initAllGroups(map);
+				fillTable(map.get(toGroup));
+			});
+		}
+	}
+
+	/* 移动到组 */
 	public void move() {
-		m2.getItems().
+		for (MenuItem mi : m2.getItems()) {
+			mi.setOnAction(e -> {
+				if (flag.contains("所有联系人") || flag.contains("未分组联系人")) { // 没有移动权限
+					System.out.println("没有移动权限");
+					return;
+				}else {
+					String toGroup = mi.getText(); // 移动到哪个组
+					for (AddressBean bean : total) {
+						if (bean.getCb().isSelected()) { // 判断选中的是哪些联系人
+							if (bean.getGroup().contains(toGroup)) { // 联系人已经在组里面了
+								continue;
+							} else {
+								if (bean.getGroup().trim().isEmpty()) // 联系人不属于任何组
+									bean.setGroup(toGroup);
+								else {
+									String[] items = bean.getGroup().split(" ");
+									if(items.length == 1)              //联系人只属于一个组
+								    bean.setGroup(toGroup);
+									else {
+									StringBuilder sb = new StringBuilder();
+									for(int i=0;i<items.length;i++) {
+										if(flag.equals(items[i])) {    //当前联系人所属的组
+											items[i] = toGroup;        
+										}
+										if(i<=items.length-1)
+										sb.append(items[i]+" ");
+										else sb.append(items[i]);
+									}
+									bean.setGroup(sb.toString());
+									}
+								}
+								map.get(flag).remove(bean);
+								map.get(toGroup).add(bean);
+							}
+						}
+						bean.getCb().setSelected(false);
+					}
+					initAllBeans(map);
+					initAllGroups(map);
+					fillTable(map.get(toGroup));
+				}
+			});
+		}
 	}
 
 	/* 填充表格数据 */
@@ -407,7 +476,7 @@ public class MyController {
 		col3.setCellValueFactory(new PropertyValueFactory<AddressBean, String>("mobilephone"));
 		col4.setCellValueFactory(new PropertyValueFactory<AddressBean, String>("group"));
 		table.setItems(FXCollections.observableArrayList(total));
-		table.getSelectionModel().clearSelection();         //取消选中某行
+		table.getSelectionModel().clearSelection(); // 取消选中某行
 	}
 
 	/* 动态更新所有组的标签 */
@@ -449,7 +518,7 @@ public class MyController {
 			f = 1;
 			remove(delist, slist);
 		}
-		if (flag.equals(2))
+		if (flag.contains("未分组联系人"))
 			fillTable(map.get("未分组"));
 		else
 			fillTable(slist);
