@@ -24,9 +24,9 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="姓名" />
-            <Label text="邮箱" GridPane.rowIndex="1" />
-            <Label text="手机" GridPane.rowIndex="2" />
+            <Label text="*姓名" />
+            <Label text="*邮箱" GridPane.rowIndex="1" />
+            <Label text="*手机" GridPane.rowIndex="2" />
             <Label text="电话" GridPane.rowIndex="3" />
             <Label text="主页" GridPane.columnIndex="2" />
             <Label text="邮编" GridPane.columnIndex="2" GridPane.rowIndex="1" />
@@ -34,21 +34,35 @@
             <Label text="所属组" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <TextField fx:id="name" prefHeight="23.0" prefWidth="130.0" GridPane.columnIndex="1" />
             <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField fx:id="moiblephone" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField fx:id="telephone" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="moiblephone" promptText="11位" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="telephone" promptText="区号-电话" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="index" GridPane.columnIndex="3" />
             <TextField fx:id="postcode" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField fx:id="birthday" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <TextField fx:id="group" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <TextField fx:id="birthday" promptText="xxxx-xx-xx" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Label text="家庭住址" GridPane.rowIndex="4" />
             <Label text="工作地址" GridPane.rowIndex="5" />
-            <TextField fx:id="home" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="4" />
-            <TextField fx:id="work" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5" />
             <Label text="备注" GridPane.rowIndex="6" />
             <TextArea fx:id="remarks" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" />
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="4">
+               <children>
+                  <TextField fx:id="hstreet" prefHeight="25.0" prefWidth="160.0" promptText="街道" />
+                  <TextField fx:id="hcity" prefHeight="23.0" prefWidth="77.0" promptText="城市" />
+                  <TextField fx:id="hprovince" prefHeight="23.0" prefWidth="80.0" promptText="省份" />
+                  <TextField fx:id="hcountry" prefHeight="23.0" prefWidth="79.0" promptText="国家" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5">
+               <children>
+                  <TextField fx:id="wstreet" prefHeight="23.0" prefWidth="158.0" promptText="街道" />
+                  <TextField fx:id="wcity" prefHeight="23.0" prefWidth="80.0" promptText="城市" />
+                  <TextField fx:id="wprovince" prefHeight="23.0" prefWidth="78.0" promptText="省份" />
+                  <TextField fx:id="wcountry" prefHeight="23.0" prefWidth="81.0" promptText="国家" />
+               </children>
+            </HBox>
+            <ComboBox fx:id="group" onAction="#getChoice" prefHeight="23.0" prefWidth="170.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button fx:id="b1" layoutX="400.0" layoutY="385.0" mnemonicParsing="false" onAction="#edit" prefHeight="23.0" prefWidth="58.0" text="编辑" />
-      <Button fx:id="b2" layoutX="469.0" layoutY="385.0" mnemonicParsing="false" onAction="#send" prefHeight="23.0" prefWidth="58.0" text="发信" />
+      <Button fx:id="b1" layoutX="400.0" layoutY="385.0" mnemonicParsing="false" onAction="#confirm" prefHeight="23.0" prefWidth="58.0" text="确认" />
+      <Button fx:id="b2" layoutX="469.0" layoutY="385.0" mnemonicParsing="false" onAction="#cancel" prefHeight="23.0" prefWidth="58.0" text="取消" />
    </children>
 </AnchorPane>

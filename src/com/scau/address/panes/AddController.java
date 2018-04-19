@@ -67,6 +67,7 @@ public class AddController {
 		this.stage = stage;
 
 		group.getItems().addAll(FXCollections.observableArrayList(mcontroller.list));
+		group.getItems().add("新建组");
 	}
 
 	/* 添加联系人 */

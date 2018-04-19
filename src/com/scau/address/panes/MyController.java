@@ -71,7 +71,7 @@ public class MyController {
 	private TextField search;// search
 
 	@FXML
-	private TableView<AddressBean> table;
+	public TableView<AddressBean> table;
 	@FXML
 	private TableColumn<AddressBean, CheckBox> col0;
 	@FXML
@@ -483,30 +483,31 @@ public class MyController {
 	public void showBean() {
 		
 		try {
-			URL location = getClass().getResource("Show.fxml");
+			URL location = getClass().getResource("ShowBean.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(location);
 			fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
 			Parent pane = fxmlLoader.load();
 			
-			ShowController sc = fxmlLoader.getController();
+			ShowBeanController sbc = fxmlLoader.getController();
 			Scene scene = new Scene(pane,603,474);
 			Stage stage = new Stage();
 			stage.setScene(scene);
 			stage.setTitle("œÍœ∏–≈œ¢");
 			stage.initModality(Modality.WINDOW_MODAL);
 			stage.initOwner(primaryStage);
-			
+			MyController mc = this;
 			table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<AddressBean>() {
 				@Override
 				public void changed(ObservableValue<? extends AddressBean> observable, AddressBean oldValue,
 						AddressBean newValue) {
 					if(newValue != null) {
-						sc.init(newValue);
+						sbc.init(newValue, stage, mc,primaryStage);
 						stage.show();
 					}
 				}
 			});
+			
 		}catch(Exception e) {
 			throw new RuntimeException(e);
 		}
