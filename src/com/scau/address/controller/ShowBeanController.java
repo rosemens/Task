@@ -1,4 +1,4 @@
-package com.scau.address.panes;
+package com.scau.address.controller;
 
 import java.net.URL;
 
@@ -83,7 +83,7 @@ public class ShowBeanController {
 	@FXML
 	public void edit() {
 		try {
-			URL location = getClass().getResource("EditBean.fxml");
+			URL location = getClass().getResource("view/EditBean.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(location);
 			fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="322.0" prefWidth="467.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scau.address.controller.AddController">
+   <children>
+      <GridPane alignment="CENTER" layoutX="15.0" layoutY="33.0" prefHeight="187.0" prefWidth="419.0">
+        <columnConstraints>
+            <ColumnConstraints fillWidth="false" halignment="CENTER" hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="77.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="123.0" minWidth="10.0" prefWidth="111.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="87.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="126.0" minWidth="10.0" prefWidth="110.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="*姓名" />
+            <Label text="*Email" GridPane.rowIndex="1" />
+            <Label text="*手机" GridPane.rowIndex="2" />
+            <Label text="电话" GridPane.rowIndex="3" />
+            <Label text="生日" GridPane.columnIndex="2" />
+            <Label text="主页" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label text="邮编" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label text="分组" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="name" GridPane.columnIndex="1" />
+            <TextField fx:id="email" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="birthday" promptText="XXXX-XX-XX" GridPane.columnIndex="3" />
+            <TextField fx:id="index" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="mobilephone" promptText="11位" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="postcode" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <TextField fx:id="telephone" promptText="区号-电话" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="group" onAction="#chooseGroup" prefWidth="150.0" promptText="请选择" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="418.0" GridPane.columnSpan="4" GridPane.rowIndex="4">
+               <children>
+                  <Label prefHeight="15.0" prefWidth="59.0" text="家庭住址">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="hstreet" prefHeight="23.0" prefWidth="124.0" promptText="街道">
+                     <HBox.margin>
+                        <Insets left="16.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <TextField fx:id="hcity" prefHeight="23.0" prefWidth="72.0" promptText="城市" />
+                  <TextField fx:id="hprovince" prefHeight="23.0" prefWidth="76.0" promptText="省份/地区" />
+                  <TextField fx:id="hcountry" prefHeight="23.0" prefWidth="75.0" promptText="国家/地区" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="453.0" GridPane.columnSpan="4" GridPane.rowIndex="5">
+               <children>
+                  <Label prefHeight="15.0" prefWidth="54.0" text="工作住址">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Label>
+                  <TextField fx:id="wstreet" prefHeight="23.0" prefWidth="124.0" promptText="街道">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <TextField fx:id="wcity" prefHeight="23.0" prefWidth="69.0" promptText="城市" />
+                  <TextField fx:id="wprovince" prefHeight="23.0" prefWidth="72.0" promptText="省份/地区" />
+                  <TextField fx:id="wcountry" prefHeight="23.0" prefWidth="73.0" promptText="国家/地区" />
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+      <Label layoutX="27.0" layoutY="232.0" text="基本备注" />
+      <TextArea fx:id="tips" layoutX="97.0" layoutY="228.0" prefHeight="39.0" prefWidth="339.0" />
+      <Button fx:id="ok" layoutX="326.0" layoutY="277.0" mnemonicParsing="false" onAction="#add" prefHeight="23.0" prefWidth="56.0" text="确定" />
+      <Button fx:id="cancel" layoutX="381.0" layoutY="277.0" mnemonicParsing="false" onAction="#cancel" prefHeight="23.0" prefWidth="56.0" text="取消" />
+   </children>
+</AnchorPane>
