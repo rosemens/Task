@@ -1,4 +1,4 @@
-package com.scau.address.controller;
+package com.scau.address.panes;
 
 import java.io.IOException;
 import java.net.URL;
@@ -288,7 +288,7 @@ public class EditBeanController {
 	private void newGroup(AddressBean bean) {
 		try {
 			try {
-				URL location = getClass().getResource("view/AddGroup.fxml");
+				URL location = getClass().getResource("AddGroup.fxml");
 				FXMLLoader fxmlLoader = new FXMLLoader();
 				fxmlLoader.setLocation(location);
 				fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());

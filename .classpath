@@ -3,6 +3,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="pinyin4j-2.5.0.jar"/>
+	<classpathentry kind="lib" path="lib-jar/pinyin4j-2.5.0.jar"/>
+	<classpathentry kind="lib" path="lib-jar/activation.jar"/>
+	<classpathentry kind="lib" path="lib-jar/javax.mail-1.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

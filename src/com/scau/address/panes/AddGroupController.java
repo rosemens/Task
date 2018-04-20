@@ -1,4 +1,4 @@
-package com.scau.address.controller;
+package com.scau.address.panes;
 
 import java.util.ArrayList;
 import com.scau.address.bean.AddressBean;

@@ -1,4 +1,4 @@
-package com.scau.address.controller;
+package com.scau.address.panes;
 
 import com.scau.address.bean.AddressBean;
 import javafx.fxml.FXML;

@@ -1,4 +1,4 @@
-package com.scau.address.controller;
+package com.scau.address.panes;
 
 import java.io.File;
 import java.io.IOException;
@@ -135,7 +135,7 @@ public class MyController {
 	@FXML
 	public void add(ActionEvent event) {
 		try {
-			URL location = getClass().getResource("view/newBean.fxml");
+			URL location = getClass().getResource("newBean.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(location);
 			fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
@@ -180,7 +180,7 @@ public class MyController {
 	@FXML
 	public void addGroup() {
 		try {
-			URL location = getClass().getResource("view/AddGroup.fxml");
+			URL location = getClass().getResource("AddGroup.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(location);
 			fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
@@ -240,7 +240,7 @@ public class MyController {
 		if (flag.contains("所有联系人") || flag.contains("未分组联系人"))
 			return;
 		try {
-			URL location = getClass().getResource("view/EditGroup.fxml");
+			URL location = getClass().getResource("EditGroup.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(location);
 			fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
@@ -574,7 +574,7 @@ public class MyController {
 	public void showBean() {
 
 		try {
-			URL location = getClass().getResource("view/ShowBean.fxml");
+			URL location = getClass().getResource("ShowBean.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(location);
 			fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());

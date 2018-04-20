@@ -1,4 +1,4 @@
-package com.scau.address.controller;
+package com.scau.address.panes;
 
 import java.net.URL;
 
@@ -83,7 +83,7 @@ public class ShowBeanController {
 	@FXML
 	public void edit() {
 		try {
-			URL location = getClass().getResource("view/EditBean.fxml");
+			URL location = getClass().getResource("EditBean.fxml");
 			FXMLLoader fxmlLoader = new FXMLLoader();
 			fxmlLoader.setLocation(location);
 			fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
@@ -108,8 +108,27 @@ public class ShowBeanController {
 	/* 发送消息 */
 	@FXML
 	public void send() {
-		System.out.println("send");
-		stage.close();
+		try {
+			URL location = getClass().getResource("SendMail.fxml");
+			FXMLLoader fxmlLoader = new FXMLLoader();
+			fxmlLoader.setLocation(location);
+			fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
+			Parent pane = fxmlLoader.load();
+			
+			stage.close();                         //关闭显示窗口
+			SendMailController smc = fxmlLoader.getController();
+			Scene scene = new Scene(pane,603,474);
+			Stage showstage = new Stage();
+			smc.init(showstage,bean);
+			showstage.setScene(scene);
+			showstage.setTitle("发送消息");
+			showstage.initModality(Modality.WINDOW_MODAL);
+			showstage.initOwner(primaryStage);
+			showstage.show();
+		}catch(Exception e) {
+			throw new RuntimeException(e);
+		}
+		
 	}
 
 }
