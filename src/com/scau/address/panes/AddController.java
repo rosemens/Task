@@ -117,6 +117,9 @@ public class AddController {
 	@FXML
 	public void chooseGroup() {
 		agroup = group.getValue();
+		if(agroup.equals("新建组")) {     //要为联系人新建一个组
+			agroup = "";
+		}
 	}
 
 	/* 封装数据到联系人对象,其中名字，手机，email不能为空 */

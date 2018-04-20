@@ -397,13 +397,19 @@ public class MyController {
 		for (MenuItem mi : m1.getItems()) {
 			mi.setOnAction(e -> {
 				String toGroup = mi.getText(); // 复制到哪个组
+				if(toGroup.equals("新建组")) {   // 复制到新建组
+					//尚未完成
+					return;
+				}
 				for (AddressBean bean : total) {
 					if (bean.getCb().isSelected()) { // 判断选中的是哪些联系人
 						if (bean.getGroup().contains(toGroup)) { // 联系人已经在组里面了
 							continue;
 						} else {
-							if (bean.getGroup().trim().isEmpty()) // 联系人不属于任何组
+							if (bean.getGroup().trim().isEmpty()) {// 联系人不属于任何组
 								bean.setGroup(toGroup);
+								map.get("未分组").remove(bean);
+							}
 							else {
 								StringBuilder sb = new StringBuilder();
 								sb.append(bean.getGroup() + " " + toGroup);
@@ -430,6 +436,10 @@ public class MyController {
 					return;
 				}else {
 					String toGroup = mi.getText(); // 移动到哪个组
+					if(toGroup.equals("新建组")) {   // 复制到新建组
+						//尚未完成
+						return;
+					}
 					for (AddressBean bean : total) {
 						if (bean.getCb().isSelected()) { // 判断选中的是哪些联系人
 							if (bean.getGroup().contains(toGroup)) { // 联系人已经在组里面了

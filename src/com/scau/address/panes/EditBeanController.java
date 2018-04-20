@@ -134,8 +134,11 @@ public class EditBeanController {
 	public void getChoice() {
 		agroup = group.getValue();
 		// 判断是否选择新建组
-		if (agroup.equals("新建组"))
-			newGroup(bean);               //弹出新建组对话框
+		if (agroup.equals("新建组")) {
+			//newGroup(bean);               //弹出新建组对话框
+			agroup = oldgroup;
+			bean.setGroup(oldgroup);
+		}
 	}
 
 	/* 编辑联系人 */
