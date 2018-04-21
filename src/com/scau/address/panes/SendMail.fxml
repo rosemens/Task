@@ -18,6 +18,7 @@
       <Button fx:id="b2" layoutX="81.0" layoutY="17.0" mnemonicParsing="false" onAction="#cancel" prefHeight="23.0" prefWidth="51.0" text="取消" />
       <Label fx:id="extra" layoutX="20.0" layoutY="154.0" onMouseClicked="#addExtra" text="添加附件" textFill="#d64d4d" underline="true" />
       <TextArea fx:id="content" layoutX="21.0" layoutY="172.0" prefHeight="301.0" prefWidth="564.0" />
-      <TextField fx:id="subject" layoutX="68.0" layoutY="103.0"  prefHeight="25.0" prefWidth="514.0" style="-fx-border-color: #AEEEEE; -fx-background-color: #AEEEEE;" />
+      <TextField fx:id="subject" layoutX="68.0" layoutY="103.0" prefHeight="25.0" prefWidth="514.0" style="-fx-border-color: #AEEEEE; -fx-background-color: #AEEEEE;" />
+      <Label layoutX="71.0" layoutY="154.0" text=" | 附件名" />
    </children>
 </AnchorPane>

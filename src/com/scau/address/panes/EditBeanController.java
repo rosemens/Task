@@ -72,7 +72,6 @@ public class EditBeanController {
 		this.mcontroller = mcontroller;
 		this.stage = stage;
 		group.getItems().addAll(FXCollections.observableArrayList(mcontroller.list));
-		group.getItems().add("ÐÂ½¨×é");
 		fillBean();
 
 	}

@@ -7,6 +7,7 @@ import com.scau.address.bean.AddressBean;
 import com.scau.address.service.AddressService;
 import com.scau.address.utils.AddressBeanTool;
 import com.scau.address.utils.CheckTool;
+import com.scau.address.utils.WarnTool;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -67,7 +68,6 @@ public class AddController {
 		this.stage = stage;
 
 		group.getItems().addAll(FXCollections.observableArrayList(mcontroller.list));
-		group.getItems().add("新建组");
 	}
 
 	/* 添加联系人 */
@@ -103,7 +103,7 @@ public class AddController {
 			service.add(bean); // 将新建联系人添加到文件中
 			stage.close();
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			WarnTool.warn(stage, e.getMessage());
 		}
 	}
 

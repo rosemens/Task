@@ -22,14 +22,18 @@ public class EditController {
 	   this.myController = myController;
 	   this.stage = stage;
 	   
-	   t1.setPromptText((String)myController.flag);
+	   t1.setText((String)myController.flag);
    }
    
    /* È·¶¨ÐÞ¸Ä */
    @FXML
    public void confirm() {
 	   String newGroup = t1.getText();
-	   Object flag = myController.flag;
+	   String flag = myController.flag;
+	   if(newGroup.equals(flag)) {
+		   stage.close();
+		   return;
+	   }
 	   if(newGroup.trim().isEmpty()) {
 		   stage.close();
 		   return;
