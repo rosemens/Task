@@ -127,11 +127,12 @@ public class EditBeanController {
 				}
 		}
 	}
-
-	/* 得到当前选择的项 */
+    
 	@FXML
+	/* 得到当前选择的项 */
 	public void getChoice() {
 		agroup = group.getValue();
+		System.out.println(agroup);
 		// 判断是否选择新建组
 		if (agroup.equals("新建组")) {
 			//newGroup(bean);               //弹出新建组对话框
@@ -146,6 +147,7 @@ public class EditBeanController {
 		try {
 			mcontroller.map.get(oldgroup).remove(bean);
 			modifyBean(bean);
+		   
 			mcontroller.map.get(agroup).add(bean);
 			mcontroller.table.getSelectionModel().clearSelection();
 			mcontroller.initAllBeans(mcontroller.map);
@@ -274,8 +276,13 @@ public class EditBeanController {
 		bean.setAddress(sbc.toString());
 		
 		//分组
-		if(!agroup.equals("新建组"))
-		bean.setGroup(agroup);
+		if(!agroup.equals("新建组")) {
+			bean.setGroup(agroup);
+		}
+		if(agroup == null || agroup.trim().isEmpty()) {
+			agroup = oldgroup;
+			bean.setGroup(oldgroup);
+		}
 
 		// 备注
 		String atips = remarks.getText();

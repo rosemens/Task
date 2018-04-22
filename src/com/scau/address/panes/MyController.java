@@ -331,7 +331,7 @@ public class MyController {
 		}
 
 		initAllBeans(map);
-		initAllBeans(map);
+		initAllGroups(map);
 	}
 
 	/* 导出CSV格式的文件 */

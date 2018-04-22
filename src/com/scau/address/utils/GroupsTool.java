@@ -49,9 +49,11 @@ public class GroupsTool {
 	public static void saveGroups(File file, Set<String> groups) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-			for (String group : groups) {
-				writer.write(group);
-				writer.newLine();
+			if(groups != null) {
+				for (String group : groups) {
+					writer.write(group);
+					writer.newLine();
+				}
 			}
 			writer.close();
 		} catch (IOException e) {

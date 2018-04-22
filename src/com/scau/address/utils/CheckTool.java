@@ -34,6 +34,7 @@ public class CheckTool {
 						List<AddressBean> list = new ArrayList<AddressBean>();
 						list.add(bean);
 						map.put(bean.getGroup(), list);
+						group.add(bean.getGroup());
 					}
 				} else {
 					for (String item : items) { // 循环遍历联系人的所有组
@@ -42,7 +43,8 @@ public class CheckTool {
 						else if (!item.trim().isEmpty() && !map.keySet().contains(item)) {
 							List<AddressBean> list = new ArrayList<AddressBean>();
 							list.add(bean);
-							map.put(bean.getGroup(), list);
+							map.put(item, list);
+							group.add(item);
 						}
 					}
 				}

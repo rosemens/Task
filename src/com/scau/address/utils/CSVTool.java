@@ -31,7 +31,6 @@ public class CSVTool {
 			while ((line = reader.readLine()) != null) {
 				String[] item = line.split(",");// 以逗号分隔每一行数据
 				AddressBean bean = AddressBeanTool.toBean(item);// 封装所得数据到AddressBean对象
-				
 				if (bean != null)
 					list.add(bean);
 			}
