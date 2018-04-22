@@ -12,4 +12,42 @@
 }  
 .tree-view{
 	-fx-padding:0 0 0 0;
-} 
+}
+.tree-view,.tree-cell{
+	-fx-background-color:#F0FFF0;
+	-fx-border-color:#F0FFF0;
+	}
+.tree-cell{
+	-fx-font-size:11px;
+	-fx-font-weight:bold;
+}
+.tree-cell:selected{
+	-fx-background-color:#AEEEEE;
+	-fx-text-fill: black;
+	-fx-font-weight:bold;
+	-fx-font-family:STXingkai;
+	-fx-font-size:13px;
+}
+.button#add{
+	-fx-background-color:linear-gradient(#7FFF00,#7CFC00);
+	}
+.button#b1,.button#b2,.button#b3,.button#b4,
+#c1,#c2,#m1,#m2{
+	-fx-background-color:linear-gradient(white,#F0F0F0);
+	-fx-border-color:#C0C0C0;
+}
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(#131313 0%, #424141 100%);
+}
+
+.table-view .column-header-background .label{
+    -fx-background-color: transparent;
+    -fx-text-fill: gray;
+}
+.table-row-cell:selected{
+	-fx-background-color:#BFEFFF;
+}
+.button#b1:hover,.button#b2:hover,
+.button#b3:hover,.button#b4:hover{
+	-fx-background-color:#8DEEEE;
+}

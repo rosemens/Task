@@ -22,6 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -34,6 +35,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -100,10 +103,9 @@ public class MyController {
 
 	/* 初始化操作 */
 	public void init(Stage primaryStage) {
-
+        
 		this.primaryStage = primaryStage;
 		total = service.getAll(); // 得到所有联系人
-
 		map = GroupsTool.getGroups(total); // 得到所有的分组与每个分组的联系人列表
 		List<String> groupname = GroupsTool.getGroupsName(); // 得到所有的组名
 		for (String name : groupname) {
@@ -131,6 +133,7 @@ public class MyController {
 			fillTable(total);
 
 		showBean();
+		
 	}
 
 	/* 添加联系人 */
@@ -151,6 +154,7 @@ public class MyController {
 			stage.setIconified(false); // 禁止最小化
 			stage.initModality(Modality.WINDOW_MODAL);
 			stage.initOwner(primaryStage);
+			stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/scau/address/images/icon3.png")));
 			stage.show();
 
 		} catch (IOException e) {
@@ -212,6 +216,7 @@ public class MyController {
 			stage.setIconified(false); // 禁止最小化
 			stage.initModality(Modality.WINDOW_MODAL);
 			stage.initOwner(primaryStage);
+			stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/scau/address/images/icon3.png")));
 			stage.show();
 
 		} catch (IOException e) {
@@ -246,7 +251,7 @@ public class MyController {
 				}
 			}
 			map.remove(flag);
-			list.remove((String) flag);
+			list.remove((String)flag);
 		}
 		initAllBeans(map);
 		initAllGroups(map);
@@ -277,6 +282,7 @@ public class MyController {
 			stage.setTitle("编辑组");
 			stage.initModality(Modality.WINDOW_MODAL);
 			stage.initOwner(primaryStage);
+			stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/scau/address/images/icon4.png")));
 			stage.show();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -530,7 +536,10 @@ public class MyController {
 	/* 动态更新所有组的标签 */
 	public void initAllGroups(Map<String, List<AddressBean>> map) {
 		t2.getSelectionModel().clearSelection();
-		TreeItem<String> root2 = new TreeItem<String>("联系组");
+		 Node rootIcon = new ImageView(  
+			        new Image(getClass().getResourceAsStream("/com/scau/address/images/icon.jpg"))  
+			    ); 
+		TreeItem<String> root2 = new TreeItem<String>("联系组",rootIcon);
 		root2.setExpanded(true);
 		for (String group : map.keySet())
 			if (!group.equals("未分组"))
@@ -542,7 +551,10 @@ public class MyController {
 	/* 动态更新联系人列表的标签 */
 	public void initAllBeans(Map<String, List<AddressBean>> map) {
 		t1.getSelectionModel().clearSelection();
-		TreeItem<String> root1 = new TreeItem<String>("联系人");
+		Node rootIcon = new ImageView(  
+		        new Image(getClass().getResourceAsStream("/com/scau/address/images/icon2.png"))  
+		    );
+		TreeItem<String> root1 = new TreeItem<String>("联系人",rootIcon);
 		root1.setExpanded(true);
 		root1.getChildren().add(new TreeItem<String>("所有联系人(" + total.size() + ")"));
 		if (map.get("未分组") != null)
@@ -617,6 +629,7 @@ public class MyController {
 			stage.setTitle("详细信息");
 			stage.initModality(Modality.WINDOW_MODAL);
 			stage.initOwner(primaryStage);
+			stage.getIcons().add(new Image(getClass().getResourceAsStream("/com/scau/address/images/icon2.png")));
 			MyController mc = this;
 			table.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<AddressBean>() {
 				@Override

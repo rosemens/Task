@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="474.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scau.address.panes.EditBeanController">
+<AnchorPane prefHeight="474.0" prefWidth="603.0" style="-fx-background-color: #D1EEEE;" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scau.address.panes.EditBeanController">
    <children>
       <GridPane layoutX="69.0" layoutY="121.0" prefHeight="245.0" prefWidth="457.0">
         <columnConstraints>
@@ -62,7 +62,7 @@
             <ComboBox fx:id="group" onAction="#getChoice" prefHeight="23.0" prefWidth="170.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
          </children>
       </GridPane>
-      <Button fx:id="b1" layoutX="400.0" layoutY="385.0" mnemonicParsing="false" onAction="#confirm" prefHeight="23.0" prefWidth="58.0" text="确认" />
-      <Button fx:id="b2" layoutX="469.0" layoutY="385.0" mnemonicParsing="false" onAction="#cancel" prefHeight="23.0" prefWidth="58.0" text="取消" />
+      <Button id="b1" fx:id="b1" layoutX="400.0" layoutY="385.0" mnemonicParsing="false" onAction="#confirm" prefHeight="23.0" prefWidth="58.0" style="-fx-border-radius: 5px;" text="确认" />
+      <Button id="b2" fx:id="b2" layoutX="469.0" layoutY="385.0" mnemonicParsing="false" onAction="#cancel" prefHeight="23.0" prefWidth="58.0" style="-fx-border-radius: 5px;" text="取消" />
    </children>
 </AnchorPane>

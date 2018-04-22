@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -12,23 +13,23 @@
         <items>
           <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="133.0" minHeight="0.0" minWidth="0.0" prefHeight="534.0" prefWidth="130.0" style="-fx-padding: 0;" SplitPane.resizableWithParent="false">
                <children>
-                  <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="534.0" prefWidth="130.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="534.0" prefWidth="133.0" style="-fx-border-color: #F0FFF0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                      <AnchorPane maxHeight="118.0" minHeight="0.0" minWidth="0.0" prefHeight="115.0" prefWidth="128.0" SplitPane.resizableWithParent="false" />
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="418.0" prefWidth="128.0">
+                      <AnchorPane maxHeight="118.0" minHeight="0.0" minWidth="0.0" prefHeight="115.0" prefWidth="128.0" style="-fx-background-color: #F0FFF0; -fx-border-color: #F0FFF0; -fx-border-width: 0px;" SplitPane.resizableWithParent="false" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="418.0" prefWidth="128.0" style="-fx-background-color: #E0EEE0;">
                            <children>
-                              <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="402.0" prefWidth="128.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="402.0" prefWidth="128.0" style="-fx-background-color: #F0FFF0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <items>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="295.0" prefWidth="126.0">
                                        <children>
-                                          <SplitPane dividerPositions="0.5" layoutY="14.0" orientation="VERTICAL" prefHeight="292.0" prefWidth="126.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <SplitPane dividerPositions="0.5" layoutY="14.0" orientation="VERTICAL" prefHeight="292.0" prefWidth="126.0" style="-fx-background-color: #F0FFF0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <items>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #E0EEE0;">
                                                    <children>
-                                                      <TreeView fx:id="t1" layoutX="-38.0" layoutY="-34.0" prefHeight="145.0" prefWidth="124.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                      <TreeView fx:id="t1" layoutX="-38.0" layoutY="-34.0" prefHeight="145.0" prefWidth="124.0" style="-fx-border-width: 0px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                    </children>
                                                 </AnchorPane>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-border-color: #F0FFF0;">
                                                    <children>
                                                       <TreeView fx:id="t2" layoutX="-65.0" layoutY="-46.0" prefHeight="145.0" prefWidth="124.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                                    </children>
@@ -37,7 +38,7 @@
                                           </SplitPane>
                                        </children>
                                     </AnchorPane>
-                                  <AnchorPane maxHeight="120.0" minHeight="0.0" minWidth="0.0" prefHeight="124.0" prefWidth="126.0" SplitPane.resizableWithParent="false" />
+                                  <AnchorPane maxHeight="120.0" minHeight="0.0" minWidth="0.0" prefHeight="124.0" prefWidth="126.0" style="-fx-background-color: #F0FFF0;" SplitPane.resizableWithParent="false" />
                                 </items>
                               </SplitPane>
                            </children>
@@ -49,28 +50,28 @@
                <children>
                   <SplitPane fx:id="s2" dividerPositions="0.22095238095238096" orientation="VERTICAL" prefHeight="443.0" prefWidth="471.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                      <AnchorPane maxHeight="130.0" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="130.0" prefWidth="787.0" SplitPane.resizableWithParent="false">
+                      <AnchorPane maxHeight="130.0" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="130.0" prefWidth="787.0" style="-fx-background-color: white;" SplitPane.resizableWithParent="false">
                            <children>
-                              <Button fx:id="b1" layoutX="8.0" layoutY="78.0" mnemonicParsing="false" onAction="#add" prefHeight="26.0" prefWidth="76.0" text="新建联系人" />
-                              <Button fx:id="b2" layoutX="386.0" layoutY="78.0" mnemonicParsing="false" onAction="#delete" prefHeight="26.0" prefWidth="55.0" text="删除" />
+                              <Button id="add" fx:id="b1" layoutX="8.0" layoutY="78.0" mnemonicParsing="false" onAction="#add" prefHeight="26.0" prefWidth="76.0" text="新建联系人" textFill="WHITE" />
+                              <Button id="b4" fx:id="b2" layoutX="395.0" layoutY="78.0" mnemonicParsing="false" onAction="#delete" prefHeight="26.0" prefWidth="46.0" text="删除" />
                               <TextField fx:id="search" layoutX="566.0" layoutY="77.0" onAction="#searchBeans" prefHeight="26.0" prefWidth="138.0" promptText="搜索联系人" />
-                              <MenuButton layoutX="851.0" layoutY="77.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="导出">
+                              <MenuButton id="m2" layoutX="851.0" layoutY="77.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="导出">
                                 <items>
                                   <MenuItem mnemonicParsing="false" onAction="#exportCSV" text="csv格式" />
                                   <MenuItem mnemonicParsing="false" onAction="#exportVCF" text="vcard格式" />
                                 </items>
                               </MenuButton>
-                              <MenuButton layoutX="781.0" layoutY="77.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="导入">
+                              <MenuButton id="m1" layoutX="781.0" layoutY="77.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="导入">
                                 <items>
                                   <MenuItem mnemonicParsing="false" onAction="#importCSV" text="csv格式" />
                                   <MenuItem mnemonicParsing="false" onAction="#importVCF" text="vcard格式" />
                                 </items>
                               </MenuButton>
-                              <Button fx:id="b4" layoutX="185.0" layoutY="78.0" mnemonicParsing="false" onAction="#edit" prefHeight="26.0" prefWidth="55.0" text="编辑组" />
-                              <Button fx:id="b3" layoutX="240.0" layoutY="78.0" mnemonicParsing="false" onAction="#deleteGroup" prefHeight="26.0" prefWidth="55.0" text="删除组" />
-                              <Button fx:id="b5" layoutX="130.0" layoutY="78.0" mnemonicParsing="false" onAction="#addGroup" prefHeight="26.0" prefWidth="55.0" text="新建组" />
-                              <ComboBox fx:id="c1" layoutX="295.0" layoutY="78.0" prefHeight="26.0" prefWidth="91.0" promptText="复制到组" />
-                              <ComboBox fx:id="c2" layoutX="441.0" layoutY="78.0" prefHeight="26.0" prefWidth="91.0" promptText="移动到组" />
+                              <Button id="b2" fx:id="b4" layoutX="185.0" layoutY="78.0" mnemonicParsing="false" onAction="#edit" prefHeight="26.0" prefWidth="55.0" text="编辑组" />
+                              <Button id="b3" fx:id="b3" layoutX="240.0" layoutY="78.0" mnemonicParsing="false" onAction="#deleteGroup" prefHeight="26.0" prefWidth="55.0" text="删除组" />
+                              <Button id="b1" fx:id="b5" layoutX="130.0" layoutY="78.0" mnemonicParsing="false" onAction="#addGroup" prefHeight="26.0" prefWidth="55.0" text="新建组" />
+                              <ComboBox id="c1" fx:id="c1" layoutX="295.0" layoutY="78.0" prefHeight="26.0" prefWidth="100.0" promptText="复制到组" />
+                              <ComboBox id="c2" fx:id="c2" layoutX="441.0" layoutY="78.0" prefHeight="26.0" prefWidth="100.0" promptText="移动到组" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -92,7 +93,7 @@
                                              </columnResizePolicy>
                                           </TableView>
                                        </children></AnchorPane>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="74.0" prefWidth="277.0" SplitPane.resizableWithParent="false" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="74.0" prefWidth="277.0" style="-fx-background-color: white; -fx-border-color: white;" SplitPane.resizableWithParent="false" />
                                 </items>
                               </SplitPane>
                            </children>

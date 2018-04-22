@@ -1,7 +1,9 @@
 package com.scau.address.panes;
 	
 import java.io.File;
+import java.io.FileInputStream;
 import java.net.URL;
+
 import com.scau.address.service.AddressService;
 import com.scau.address.utils.GroupsTool;
 
@@ -11,6 +13,7 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 
 
 public class Main extends Application { 
@@ -28,6 +31,9 @@ public class Main extends Application {
 			MyController mc = fxmlLoader.getController();  //获取控制器
 			mc.init(primaryStage);
 			primaryStage.show();
+			primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/com/scau/address/images/bean.png")));
+			
+			
 			
 			primaryStage.setOnCloseRequest(e->{            //监听是否关闭窗口
 				//保存操作完成后所有的组名

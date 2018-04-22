@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="233.0" prefWidth="383.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scau.address.panes.AddGroupController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="233.0" prefWidth="383.0"  style="-fx-background-color: #E0EEE0;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scau.address.panes.AddGroupController">
    <children>
-      <Label layoutX="52.0" layoutY="100.0" prefHeight="28.0" prefWidth="77.0" text="组名" />
-      <TextField fx:id="t1" layoutX="133.0" layoutY="98.0" prefHeight="28.0" prefWidth="210.0" />
-      <Button fx:id="b1" layoutX="218.0" layoutY="188.0" mnemonicParsing="false" onAction="#confirm" prefHeight="23.0" prefWidth="55.0" text="确定" />
-      <Button fx:id="b2" layoutX="289.0" layoutY="188.0" mnemonicParsing="false" onAction="#cancel" prefHeight="23.0" prefWidth="55.0" text="取消" />
+      <Label layoutX="52.0" layoutY="97.0" prefHeight="30.0" prefWidth="62.0" text="组名:" textFill="#eb570efa">
+         <font>
+            <Font name="STXingkai" size="24.0" />
+         </font></Label>
+      <TextField id="text" fx:id="t1" layoutX="133.0" layoutY="98.0" prefHeight="28.0" prefWidth="210.0" />
+      <Button id="b1" fx:id="b1" layoutX="218.0" layoutY="188.0" mnemonicParsing="false" onAction="#confirm" prefHeight="23.0" prefWidth="55.0" style="-fx-background-color: #F7F7F7; -fx-border-color: #C4C4C4; -fx-border-radius: 5px;" text="确定" textFill="#2d57e0" />
+      <Button id="b2" fx:id="b2" layoutX="289.0" layoutY="188.0" mnemonicParsing="false" onAction="#cancel" prefHeight="23.0" prefWidth="55.0" style="-fx-background-color: #F7F7F7; -fx-border-color: #C4C4C4; -fx-border-radius: 5px;" text="取消" textFill="#223fe4" />
    </children>
 </AnchorPane>

@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -63,6 +65,19 @@ public class ShowBeanController {
 		remarks.setText(bean.getRemarks());
 		home.setText(get(bean.getAddress()));
 		work.setText(get(bean.getWorkplace()));
+		
+		/*提示信息*/
+		name.setTooltip(new Tooltip(name.getText()));
+		email.setTooltip(new Tooltip(email.getText()));
+		mobilephone.setTooltip(new Tooltip(mobilephone.getText()));
+		telephone.setTooltip(new Tooltip(telephone.getText()));
+		birthday.setTooltip(new Tooltip(birthday.getText()));
+		index.setTooltip(new Tooltip(index.getText()));
+		postcode.setTooltip(new Tooltip(postcode.getText()));
+		group.setTooltip(new Tooltip(group.getText()));
+		remarks.setTooltip(new Tooltip(remarks.getText()));
+		home.setTooltip(new Tooltip(home.getText()));
+		work.setTooltip(new Tooltip(work.getText()));
 
 	}
 
@@ -72,7 +87,7 @@ public class ShowBeanController {
 		StringBuilder sb = new StringBuilder();
 		if (items != null) {
 			for (int i = 0; i < items.length; i++) {
-				if (!items.equals(";"))
+				if (!items[i].equals(";"))
 					sb.append(items[i] + " ");
 			}
 		}
@@ -98,6 +113,7 @@ public class ShowBeanController {
 			showstage.setTitle("修改联系人");
 			showstage.initModality(Modality.WINDOW_MODAL);
 			showstage.initOwner(primaryStage);
+			showstage.getIcons().add(new Image(getClass().getResourceAsStream("/com/scau/address/images/icon2.png")));
 			showstage.show();
 		}catch(Exception e) {
 			throw new RuntimeException(e);
@@ -124,6 +140,7 @@ public class ShowBeanController {
 			showstage.setTitle("发送消息");
 			showstage.initModality(Modality.WINDOW_MODAL);
 			showstage.initOwner(primaryStage);
+			showstage.getIcons().add(new Image(getClass().getResourceAsStream("/com/scau/address/images/icon5.png")));
 			showstage.show();
 		}catch(Exception e) {
 			throw new RuntimeException(e);
