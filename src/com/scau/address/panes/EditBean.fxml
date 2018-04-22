@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
@@ -59,7 +60,19 @@
                   <TextField fx:id="wcountry" prefHeight="23.0" prefWidth="81.0" promptText="国家" />
                </children>
             </HBox>
-            <ComboBox fx:id="group" onAction="#getChoice" prefHeight="23.0" prefWidth="170.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="187.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <children>
+                  <Label fx:id="group" prefHeight="15.0" prefWidth="101.0" text="label">
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="mod" onMouseClicked="#modify" prefHeight="15.0" prefWidth="43.0" text="修改" textFill="#ee2020" underline="true" />
+               </children>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </HBox>
          </children>
       </GridPane>
       <Button id="b1" fx:id="b1" layoutX="400.0" layoutY="385.0" mnemonicParsing="false" onAction="#confirm" prefHeight="23.0" prefWidth="58.0" style="-fx-border-radius: 5px;" text="确认" />

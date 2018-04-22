@@ -2,6 +2,9 @@ package com.scau.address.panes;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import com.scau.address.bean.AddressBean;
 import com.scau.address.utils.CheckTool;
@@ -9,12 +12,20 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -34,7 +45,9 @@ public class EditBeanController {
 	@FXML
 	private TextField birthday;
 	@FXML
-	private ComboBox<String> group;
+	private Label group;
+	@FXML
+	private Label mod;
 
 	@FXML
 	private TextField hstreet;
@@ -64,14 +77,15 @@ public class EditBeanController {
 	private AddressBean bean;
 	private Stage stage;
 	private MyController mcontroller;
-	private String agroup = ""; // 记录未修改前联系人所属的组
-	private String oldgroup = "";
+	private String oldgroup = ""; // 记录未修改前联系人所属的组
 
 	public void init(AddressBean bean, Stage stage, MyController mcontroller) {
 		this.bean = bean;
 		this.mcontroller = mcontroller;
 		this.stage = stage;
-		group.getItems().addAll(FXCollections.observableArrayList(mcontroller.list));
+		
+		oldgroup = bean.getGroup();
+		group.setTooltip(new Tooltip(group.getText()));
 		fillBean();
 
 	}
@@ -85,10 +99,7 @@ public class EditBeanController {
 		moiblephone.setText(bean.getMobilephone());
 		telephone.setText(bean.getTelephone());
 		birthday.setText(bean.getBirthday());
-		group.setValue(bean.getGroup());
-		oldgroup = bean.getGroup();
-		if (oldgroup.trim().isEmpty())
-			oldgroup = "未分组";
+		group.setText(bean.getGroup());
 		remarks.setText(bean.getRemarks());
 
 		fillAddress(bean.getAddress().split(";"), "h"); // h表示的是家庭地址，w表示的是工作地址
@@ -130,30 +141,98 @@ public class EditBeanController {
     
 	@FXML
 	/* 得到当前选择的项 */
-	public void getChoice() {
-		agroup = group.getValue();
-		System.out.println(agroup);
-		// 判断是否选择新建组
-		if (agroup.equals("新建组")) {
-			//newGroup(bean);               //弹出新建组对话框
-			agroup = oldgroup;
-			bean.setGroup(oldgroup);
-		}
+	public void modify() {
+		String[] items = bean.getGroup().split(" ");
+			 
+	     BorderPane bPane = new BorderPane();
+	     GridPane pane = new GridPane();
+	     int count = 0;
+	     for(String gname:mcontroller.list) {
+	    	 if(!gname.equals("新建组")) {
+	    		 CheckBox c = new CheckBox();
+	    		 c.setText(gname);
+	    		 c.setPrefWidth(130);
+	    		 c.setStyle("-fx-background-color:white");
+	    		 for(String item:items) {
+	    			 if(gname.equals(item) )
+	    				 c.setSelected(true);
+	    		 }
+	    		 pane.add(c, 0, count++);
+	    	 }
+	     }
+	     TextField text = new TextField();
+         text.setPromptText("输入新组名");
+	     pane.add(text, 0, count);
+	     HBox h1 = new HBox(10);
+	     Button save = new Button("保存");
+	     Button back = new Button("返回");
+	     h1.getChildren().addAll(save,back);
+	     h1.setAlignment(Pos.CENTER_RIGHT);
+	    	
+	     bPane.setCenter(pane);
+	     bPane.setBottom(h1);
+	     pane.setAlignment(Pos.CENTER);
+	     pane.setVgap(20);
+	     bPane.setStyle("-fx-background-color: #D1EEEE");
+	     pane.setStyle("-fx-background-color: #D1EEEE");
+	     h1.setStyle("-fx-background-color: #D1EEEE");
+	     Scene scene = new Scene(bPane,300,200);
+	     Stage cstage = new Stage();
+	     cstage.setScene(scene);
+	     cstage.initModality(Modality.WINDOW_MODAL);
+	     cstage.initOwner(stage);
+	     cstage.show();
+	     save.setOnAction(e->{
+	    	 StringBuilder sb = new StringBuilder();
+	    	 int num = 0;
+	    	 for(Node c:pane.getChildren()) {
+	    		 if(c instanceof CheckBox) {
+	    			 if(((CheckBox) c).isSelected()) {
+	    				 sb.append(((CheckBox)c).getText());
+	    				 if(num < pane.getChildren().size() - 2) {
+	    					 sb.append(" ");
+	    				 }
+	    			 }
+	    		 }
+	    	 }
+	    	 if(!text.getText().trim().isEmpty()) {
+	    		 sb.append(text.getText());
+	    	 }
+             bean.setGroup(sb.toString());     //设置新分组
+             group.setText(sb.toString());
+             group.getTooltip().setText(sb.toString());
+             cstage.close();
+	     });
 	}
 
 	/* 编辑联系人 */
 	@FXML
 	public void confirm() {
 		try {
-			mcontroller.map.get(oldgroup).remove(bean);
+			for(String item:oldgroup.split(" ")) {  //将联系人从原来的组里面移除
+				if(!item.trim().isEmpty())
+				mcontroller.map.get(item).remove(bean);
+				else mcontroller.map.get("未分组").remove(bean);  //如果联系人原来不属于任何组
+			}
 			modifyBean(bean);
-		   
-			mcontroller.map.get(agroup).add(bean);
+			if(bean.getGroup().trim().isEmpty()) {     //不属于任何分组
+				mcontroller.map.get("未分组").add(bean);
+			}
+			else for(String item:bean.getGroup().split(" ")) {
+				if(mcontroller.map.keySet().contains(item))
+				mcontroller.map.get(item).add(bean);
+				else {
+					List<AddressBean> ngroup = new ArrayList<AddressBean>();
+					ngroup.add(bean);
+					mcontroller.map.put(item, ngroup);
+					mcontroller.list.add(item);
+				}
+			}
 			mcontroller.table.getSelectionModel().clearSelection();
 			mcontroller.initAllBeans(mcontroller.map);
 			mcontroller.initAllGroups(mcontroller.map);
-			mcontroller.fillTable(mcontroller.map.get(agroup));
 			mcontroller.updateGroupButton();
+			mcontroller.fillTable(mcontroller.total);
 
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -274,49 +353,11 @@ public class EditBeanController {
 		else
 			sbc.append(";" + hco);
 		bean.setAddress(sbc.toString());
-		
-		//分组
-		if(!agroup.equals("新建组")) {
-			bean.setGroup(agroup);
-		}
-		if(agroup == null || agroup.trim().isEmpty()) {
-			agroup = oldgroup;
-			bean.setGroup(oldgroup);
-		}
 
 		// 备注
 		String atips = remarks.getText();
 		bean.setRemarks(atips);
 
-	}
-
-	/* 修改分组时要新建别的组 */
-	private void newGroup(AddressBean bean) {
-		try {
-			try {
-				URL location = getClass().getResource("AddGroup.fxml");
-				FXMLLoader fxmlLoader = new FXMLLoader();
-				fxmlLoader.setLocation(location);
-				fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
-				Parent pane = fxmlLoader.load();
-				AddGroupController ac = fxmlLoader.getController(); // 得到新建联系人的fxml的控制器对象
-				Scene scene = new Scene(pane, 383, 233);
-				Stage addstage = new Stage();
-				ac.init(mcontroller, addstage); // 初始化新建面板
-				addstage.setScene(scene);
-				addstage.setTitle("新建组");
-				addstage.setIconified(false); // 禁止最小化
-				addstage.initModality(Modality.WINDOW_MODAL);
-				addstage.initOwner(stage);
-				addstage.show();
-
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-				throw new RuntimeException(e);
-			}
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 	@FXML
