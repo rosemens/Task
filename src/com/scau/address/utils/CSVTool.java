@@ -9,7 +9,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import com.scau.address.bean.AddressBean;
 
 
@@ -24,12 +27,21 @@ public class CSVTool {
 	/** 读取联系人文件(csv格式),用于导入时调用 */
 	public static List<AddressBean> importCsvFile(File file) {
 		List<AddressBean> list = new ArrayList<>();
+	    int len = 11;                             //联系人属性个数
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(file));
 			reader.readLine();// 标题信息，不用解析
 			String line = null;
 			while ((line = reader.readLine()) != null) {
-				String[] item = line.split(",");// 以逗号分隔每一行数据
+				String[] item = new String[len];
+				for(int i=0;i<len;i++) {  //初始化
+					item[i] = "";
+				}
+				if(line.split(",").length <= len)
+				for(int i=0;i<line.split(",").length;i++) {// 以逗号分隔每一行数据
+					item[i] = line.split(",")[i];
+				}
+				
 				AddressBean bean = AddressBeanTool.toBean(item);// 封装所得数据到AddressBean对象
 				if (bean != null)
 					list.add(bean);
@@ -91,7 +103,7 @@ public class CSVTool {
 				else writer.write(bean.getGroup()+",");
 				
 				if(bean.getRemarks().trim().isEmpty())
-					writer.write(" ");
+					writer.write(",");
 				else writer.write(bean.getRemarks());
 				writer.newLine();
 			}

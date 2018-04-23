@@ -142,8 +142,7 @@ public class EditBeanController {
 	@FXML
 	/* 得到当前选择的项 */
 	public void modify() {
-		String[] items = bean.getGroup().split(" ");
-			 
+		String[] items = bean.getGroup().split(" "); 
 	     BorderPane bPane = new BorderPane();
 	     GridPane pane = new GridPane();
 	     int count = 0;
@@ -188,20 +187,27 @@ public class EditBeanController {
 	    	 for(Node c:pane.getChildren()) {
 	    		 if(c instanceof CheckBox) {
 	    			 if(((CheckBox) c).isSelected()) {
+	    				 num++;
 	    				 sb.append(((CheckBox)c).getText());
-	    				 if(num < pane.getChildren().size() - 2) {
+	    				 if(num < pane.getChildren().size() - 1) {
 	    					 sb.append(" ");
 	    				 }
 	    			 }
 	    		 }
 	    	 }
 	    	 if(!text.getText().trim().isEmpty()) {
+	    		 if(num != 0)           //没有选中其他组
+	    		 sb.append(" ");
 	    		 sb.append(text.getText());
 	    	 }
-             bean.setGroup(sb.toString());     //设置新分组
+	    	 num = 0;
              group.setText(sb.toString());
              group.getTooltip().setText(sb.toString());
              cstage.close();
+	     });
+	     
+	     back.setOnAction(e->{
+	    	 cstage.close();
 	     });
 	}
 
@@ -215,13 +221,14 @@ public class EditBeanController {
 				else mcontroller.map.get("未分组").remove(bean);  //如果联系人原来不属于任何组
 			}
 			modifyBean(bean);
+			bean.setGroup(group.getText());
 			if(bean.getGroup().trim().isEmpty()) {     //不属于任何分组
 				mcontroller.map.get("未分组").add(bean);
 			}
 			else for(String item:bean.getGroup().split(" ")) {
 				if(mcontroller.map.keySet().contains(item))
 				mcontroller.map.get(item).add(bean);
-				else {
+				else if(!item.trim().isEmpty()){
 					List<AddressBean> ngroup = new ArrayList<AddressBean>();
 					ngroup.add(bean);
 					mcontroller.map.put(item, ngroup);
